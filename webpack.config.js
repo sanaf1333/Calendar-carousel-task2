@@ -26,8 +26,7 @@ module.exports={
                           'import',
                           {
                             libraryName: 'antd',
-                            libraryDirectory: 'es',
-                            style: 'css',
+                            style: true,
                           },
                           'antd',
                         ],
@@ -36,39 +35,24 @@ module.exports={
                   },
                 ],
               },
-          {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            use: [
               {
-                loader: 'babel-loader',
-                options: {
-                  presets: [
-                    '@babel/preset-env',
-                    '@babel/preset-react',
-                  ],
-                  plugins: [
-                    [
-                      'import',
-                      {
-                        libraryName: 'antd',
-                        libraryDirectory: 'es',
-                        style: 'css',
-                      },
-                      'antd',
+                test: /\.(jsx|js)$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                    plugins: [
+                      ['import', { libraryName: 'antd', style: true }],
                     ],
-                ],
+                  },
                 },
               },
-            ],
-          },
           {
             test: /\.css$/,
             use: ['style-loader', 'css-loader'],
           },
         ],
       },
-    resolve:{
-        extensions: ['.tsx', '.ts', '.jsx', 'js']
-    }
+    
 }

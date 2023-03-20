@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-
-import Navbar from "./navbar";
+import Sana from './sana.jsx';
 interface AppProps {
     message?: string
 }
@@ -21,7 +20,7 @@ class App extends Component<AppProps, AppState> {
             <div>
                 <h1>{this.props.message}</h1>
                 <h1>hell</h1>
-                <Navbar date="sana"/>
+                <Sana/>
             </div>
         );
     }
