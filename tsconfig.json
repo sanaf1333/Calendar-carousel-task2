@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "noImplicitAny": false,
+        "jsx": "react-jsx"
+    },
+    "types": [
+        "react",
+        "react-dom",
+        "antd"
+      ],
+    "include": [
+        "src"
+    ]
+}
