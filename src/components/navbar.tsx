@@ -1,5 +1,5 @@
-import {Layout} from 'antd';
-const { Header } = Layout;
+import Layout from "antd/es/layout/layout";
+import { Header } from "antd/es/layout/layout";
 
 interface Props {
     date: string;
@@ -7,9 +7,8 @@ interface Props {
 
 const Navbar: React.FC<Props> = ({ date }) => {
     return (
-        <Header>
-            <h1>date</h1>
-            <div>selected date: {date}</div>
+        <Header style={{color: "white"}}>            
+           <div>selected date: {date}</div>
         </Header>
     );
 };
