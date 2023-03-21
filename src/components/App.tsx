@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Sana from './sana.jsx';
 import Navbar from "./navbar";
+import DateCard from "./date-card";
 interface AppProps {
     message?: string
 }
@@ -23,6 +24,7 @@ class App extends Component<AppProps, AppState> {
                 <h1>hell</h1>
                 <Sana/>
                 <Navbar date="helloo" />
+                <DateCard month="July" date="23" day="Monday" />
             </div>
         );
     }

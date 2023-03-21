@@ -1,14 +1,16 @@
-import Layout from "antd/es/layout/layout";
-import { Header } from "antd/es/layout/layout";
-
+import { Layout } from "antd";
+const {Header} = Layout;
+import { Typography } from 'antd';
+const { Title } = Typography;
 interface Props {
     date: string;
   }
 
 const Navbar: React.FC<Props> = ({ date }) => {
     return (
-        <Header style={{color: "white"}}>            
-           <div>selected date: {date}</div>
+        <Header style={{backgroundColor: "gray"}}>  
+            <Title level={3} style={{ float: 'left', margin: 0 }}>Date</Title>          
+           <Title level={3} style={{ float: 'right', margin: 0 }}>{date}</Title>
         </Header>
     );
 };
