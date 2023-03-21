@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Sana from './sana.jsx';
 import Navbar from "./navbar";
 import DateCard from "./date-card";
+import CardCarousel from "./card-carousel";
 interface AppProps {
     message?: string
 }
@@ -25,6 +26,19 @@ class App extends Component<AppProps, AppState> {
                 <Sana/>
                 <Navbar date="helloo" />
                 <DateCard month="July" date="23" day="Monday" />
+                <CardCarousel
+                    cards={[
+                        { month: 'January', date: '01', day: 'Monday' },
+                        { month: 'January', date: '02', day: 'Tuesday' },
+                        { month: 'January', date: '03', day: 'Wednesday' },
+                        { month: 'January', date: '04', day: 'Thursday' },
+                        { month: 'January', date: '05', day: 'Friday' },
+                        { month: 'January', date: '06', day: 'Saturday' },
+                        { month: 'January', date: '07', day: 'Sunday' },
+                        // ...
+                    ]}
+                    />
+
             </div>
         );
     }

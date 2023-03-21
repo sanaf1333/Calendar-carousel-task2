@@ -1,4 +1,4 @@
-import { Card } from 'antd';
+import { Card, Layout, Space } from 'antd';
 import React from 'react';
 const { Meta } = Card;
 import { Typography } from 'antd';
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const DateCard: React.FC<Props> = ({ month, date, day }) => (
+    <Space style={{margin: '0 10px'}}>
     <Card
         type="inner"
         title={month}
@@ -23,6 +24,8 @@ const DateCard: React.FC<Props> = ({ month, date, day }) => (
             description={<Title type="secondary" level={5} style={{ padding: 0, margin: 10 }}>{day}</Title>}
         />
     </Card>
+    </Space>
+   
 );
 
 export default DateCard;
