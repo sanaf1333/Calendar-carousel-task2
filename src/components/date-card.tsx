@@ -9,19 +9,19 @@ interface Props {
     day: string;
 }
 
-const DateCard: React.FC<Props> = ({ month, date, day }) => (
+const DateCard: React.FC<Props> = (Props) => (
     <Space style={{margin: '0 10px'}}>
     <Card
         type="inner"
-        title={month}
+        title={Props.month}
         bordered={false}
         style={{ width: 200, padding: 0, textAlign: 'center' }}
         headStyle={{ backgroundColor: 'pink', color: 'white' }}
         bodyStyle={{ padding: 0, margin: 0 }}
     >
-        <Title type="secondary" style={{ fontWeight: 'bold', fontSize: 54, padding: 0, margin: 10 }}>{date}</Title>
+        <Title type="secondary" style={{ fontWeight: 'bold', fontSize: 54, padding: 0, margin: 10 }}>{Props.date}</Title>
         <Meta
-            description={<Title type="secondary" level={5} style={{ padding: 0, margin: 10 }}>{day}</Title>}
+            description={<Title type="secondary" level={5} style={{ padding: 0, margin: 10 }}>{Props.day}</Title>}
         />
     </Card>
     </Space>
