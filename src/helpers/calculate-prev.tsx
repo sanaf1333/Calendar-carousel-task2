@@ -4,7 +4,7 @@ export function calculatePrevMonth(month:string, year:number){
    
     nextMonthDate.setMonth(nextMonthDate.getMonth() - 1);
    
-    if (nextMonthDate.getMonth() === 0) {
+    if (nextMonthDate.getMonth() === 11) {
         nextMonthDate.setFullYear(nextMonthDate.getFullYear());
         year=nextMonthDate.getFullYear();
         console.log("fun2 ", year);
