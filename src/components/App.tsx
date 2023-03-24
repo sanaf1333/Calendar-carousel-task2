@@ -35,7 +35,7 @@ class App extends Component<AppProps, AppState> {
                 <h1>{this.props.message}</h1>
                 <h1>hell</h1>
                 <Navbar date="helloo" />
-                <DateCard month="July" date="23" day="Monday" />
+                
                 <CardCarousel
                     cards={calendarDays}
                     />

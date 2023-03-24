@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import DateCard from './date-card';
 import { calculateNextMonth } from '../helpers/calculate-next';
 import { calculatePrevMonth } from '../helpers/calculate-prev';
+import AddEvent from './add-event';
 interface CardData {
     month: string;
     date: string;
@@ -15,6 +16,16 @@ interface Props {
 }
 
 const CardCarousel: React.FC<Props> = ({ cards }) => {
+
+    const [showAddEvent, setShowAddEvent] = useState(false);
+
+    const handleCardClick = () => {
+        setShowAddEvent(true);
+    };
+
+    const handleAddEvent = () => {
+        setShowAddEvent(false);
+    };
 
     let today: Date = new Date();
     const year = today.getFullYear();
@@ -85,11 +96,15 @@ const CardCarousel: React.FC<Props> = ({ cards }) => {
                     Next
                 </Button>
             </div>
+            {showAddEvent ? (
+                <AddEvent month="nm" date="ff" year={12} onClickAddEvent={handleAddEvent} />
+            ) : (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 {daysss.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
-                    <DateCard key={index} {...calendarDays} />
+                    <DateCard key={index} {...calendarDays} onClick={handleCardClick} />
                 ))}
             </div>
+            )}
         </>
     );
 };
