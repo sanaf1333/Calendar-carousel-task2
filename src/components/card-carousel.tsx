@@ -16,15 +16,10 @@ interface Props {
 
 const CardCarousel: React.FC<Props> = ({ cards }) => {
 
-    let today: Date = new Date(); //set current selected date//default today
+    let today: Date = new Date();
     const year = today.getFullYear();
-    //shift this to function and recall with month and year. send it year and month and then return array
-    //send current month and function
     const daysInMonth: number = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-    //console.log(daysInMonth);
     const firstDayOfMonth: number = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
-    //const firstDayOfMonth: number = new Date().getMonth();
-    //console.log(firstDayOfMonth);
     let calendarDays: { month: string; date: string; day: string; year: number }[] = [];
 
     for (let i = 1; i <= daysInMonth; i++) {
@@ -35,15 +30,8 @@ const CardCarousel: React.FC<Props> = ({ cards }) => {
 
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(2);
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
     const [daysss, setDaysss] = useState(calendarDays);
-    //if limit reached, send current month and year to function, get next month and year or previous.
-    // Find the index of today's date in the calendarDays array
-
     const todayIndex = cards.findIndex(card => card.date === today.getDate().toString());
-
-    // Set startIndex and endIndex based on the index of today's date
     useEffect(() => {
         if (todayIndex >= 0) {
             setStartIndex(todayIndex);
@@ -73,26 +61,20 @@ const CardCarousel: React.FC<Props> = ({ cards }) => {
     const handlePrev = () => {
         let newStartIndex = startIndex;
         let newEndIndex = endIndex;
-      console.log("start",newStartIndex,newEndIndex);
         if (startIndex <= 3) {
-            console.log("in if")
-          const prevMonthDays = calculatePrevMonth(daysss[startIndex].month, daysss[startIndex].year);
-          const newDays = [...prevMonthDays, ...daysss];
-          setDaysss(newDays);
-          newStartIndex = startIndex + prevMonthDays.length-3;
-          newEndIndex = endIndex + prevMonthDays.length-3;
-          console.log("after if ",newStartIndex,newEndIndex);
+            const prevMonthDays = calculatePrevMonth(daysss[startIndex].month, daysss[startIndex].year);
+            const newDays = [...prevMonthDays, ...daysss];
+            setDaysss(newDays);
+            newStartIndex = startIndex + prevMonthDays.length - 3;
+            newEndIndex = endIndex + prevMonthDays.length - 3;
         } else {
-            console.log("in else");
-          newStartIndex = startIndex - 3;
-          newEndIndex = endIndex - 3;
-          console.log("after else",newStartIndex,newEndIndex);
+            newStartIndex = startIndex - 3;
+            newEndIndex = endIndex - 3;
         }
-      console.log(daysss);
         setStartIndex(newStartIndex);
         setEndIndex(newEndIndex);
-      };
-      
+    };
+
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 20 }}>
