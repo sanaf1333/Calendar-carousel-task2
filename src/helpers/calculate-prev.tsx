@@ -1,5 +1,4 @@
 export function calculatePrevMonth(month:string, year:number){
-    console.log("fun1 ", year);
     const nextMonthDate: Date = new Date(`${year}-${month}-01`);
    
     nextMonthDate.setMonth(nextMonthDate.getMonth() - 1);
@@ -7,7 +6,6 @@ export function calculatePrevMonth(month:string, year:number){
     if (nextMonthDate.getMonth() === 11) {
         nextMonthDate.setFullYear(nextMonthDate.getFullYear());
         year=nextMonthDate.getFullYear();
-        console.log("fun2 ", year);
     }
     const daysInMonth: number = new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), 0).getDate();
     const firstDayOfMonth: number = new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), 1).getDay();

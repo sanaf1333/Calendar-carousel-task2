@@ -1,7 +1,6 @@
-import React, {Component} from "react";
-import Navbar from "./navbar";
-import DateCard from "./date-card";
-import CardCarousel from "./card-carousel";
+import React, {Component, useState} from "react";
+import CalendarPage from "../pages/calendar";
+import { holidays } from "../data/holidays";
 interface AppProps {
     message?: string
 }
@@ -16,32 +15,13 @@ class App extends Component<AppProps, AppState> {
             rendered: false,
         };
     }
- 
+   
     render() {
-        const today: Date = new Date();
-
-        const daysInMonth: number = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-        const firstDayOfMonth: number = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
-        const year= today.getFullYear();
-        const calendarDays: { month: string; date: string; day: string; year:number }[] = [];
-
-        for (let i = 1; i <= daysInMonth; i++) {
-            const day: string = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][((firstDayOfMonth + i - 1) % 7)];
-            const month: string = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(today);
-            calendarDays.push({ month, date: i.toString(), day, year });
-        }
+        
         return (
-            <div>
-                <h1>{this.props.message}</h1>
-                <h1>hell</h1>
-                <Navbar date="helloo" />
-                
-                <CardCarousel
-                    cards={calendarDays}
-                    />
-
-            </div>
+            <CalendarPage holidays={holidays} />
         );
     }
+
 }
 export default App;

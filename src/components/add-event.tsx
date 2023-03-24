@@ -44,8 +44,8 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = defaultOptions
     };
 
     return (
-        <Col>
-            <Row>
+        <Col style={{backgroundColor:"white", height:"200px"}}>
+            <Row style={{marginBottom:"20px"}}>
                 <Col span={8} offset={8}>
                     Time:
                 </Col>
@@ -57,8 +57,8 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = defaultOptions
                         bordered={false}
                     />
                 </Col>
-            </Row>
-            <Row>
+            </Row >
+            <Row style={{marginBottom:"20px"}}>
                 <Col span={8} offset={8}>
                     Duration
                 </Col>
@@ -74,7 +74,7 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = defaultOptions
                     </Space>
                 </Col>
             </Row>
-            <Row>
+            <Row style={{marginBottom:"20px"}}>
                 <Col span={8} offset={12}>
                 <Button onClick={onClickAddEvent}>OK</Button>
                 </Col>
