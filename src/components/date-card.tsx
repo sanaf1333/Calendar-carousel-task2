@@ -19,12 +19,25 @@ interface Props {
     selected: boolean;
     index: number;
     holiday?: Holiday[];
+    selectedDate: string;
 }
 
 const DateCard: React.FC<Props> = (Props) => {
+
     function handleCardClick(index: number) {
-        Props.onClickNavbarDate(`${Props.month} ${Props.date}, ${Props.year}`);
-        Props.onClick(index);
+        if (!isHoliday){
+            Props.onClickNavbarDate(`${Props.month} ${Props.date}, ${Props.year}`);
+            Props.onClick(index);
+        }
+        
+      }
+      let dateInput=`${Props.month} ${Props.date}, ${Props.year}`;
+      console.log(dateInput, "jkkkkk");
+      console.log(Props.selectedDate, "jkkj");
+      const today=new Date();
+      const month: string = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(today);
+      if(`${month} ${today.getDate()}, ${today.getFullYear()}`===dateInput){
+        dateInput=`Today`;
       }
       const isHoliday = Props.holiday?.some(h => h.date === Props.date && h.month === Props.month && h.year === Props.year);
     return (
@@ -39,11 +52,10 @@ const DateCard: React.FC<Props> = (Props) => {
                         width: 200,
                         padding: 0,
                         textAlign: 'center',
-                        border: Props.selected ? '2px solid pink' : 'none',
-                        boxShadow: Props.selected ? '1px 1px 1px 1px #c2c1c0': 'none',
-                        cursor: isHoliday ? 'not-allowed' : 'pointer',
+                        border: !isHoliday && dateInput===Props.selectedDate ? '2px solid pink' : 'none',
+                        boxShadow: !isHoliday && dateInput===Props.selectedDate ? '1px 1px 1px 1px #c2c1c0': 'none',
                     }}
-                    headStyle={{ backgroundColor: 'pink', color: 'white' }}
+                    headStyle={{ backgroundColor: isHoliday? 'gray': 'pink', color: 'white' }}
                     bodyStyle={{ padding: 0, margin: 0 }}
                     onClick={() => handleCardClick(Props.index)}
                     
@@ -66,7 +78,7 @@ const DateCard: React.FC<Props> = (Props) => {
                                 level={5}
                                 style={{ padding: 0, margin: 10 }}
                             >
-                                {Props.day}
+                                {isHoliday? 'Closed':  Props.day}
                             </Title>
                         }
                     />

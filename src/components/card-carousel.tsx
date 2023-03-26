@@ -7,6 +7,7 @@ import AddEvent from './add-event';
 import { motion, AnimatePresence } from 'framer-motion';
 import { calculateMonth } from '../helpers/calculate-month';
 import { holidays } from '../data/holidays';
+import { searchDropdownDate } from '../helpers/search-dropdown-date';
 interface Holiday {
     name: string;
     date: string;
@@ -18,14 +19,21 @@ interface Props {
     holiday?: Holiday[];
     months: any[];
     updateMonths: (updatedMonths: any[]) => void;
+    selectedDate: string;
+    selectedDropdown: string;
+    dropdownChanged: boolean;
+    handleSetDropdownChanged: (value: boolean)=>void;
+    startIndex: number;
+    handleSetStartIndex: (value: number) => void;
+    endIndex: number;
+    handleSetEndIndex: (value: number) => void;
 }
 
-const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, months, updateMonths }) => {
-    
+const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, months, updateMonths, selectedDate, selectedDropdown, dropdownChanged, handleSetDropdownChanged, startIndex,handleSetStartIndex, endIndex, handleSetEndIndex }) => {
+    console.log(selectedDate);
     const [selectedCard, setSelectedCard] = useState(-1);
     const [showAddEvent, setShowAddEvent] = useState(false);
-    const [startIndex, setStartIndex] = useState(0);
-    const [endIndex, setEndIndex] = useState(2);
+    
     
     const variants = {
         hidden: { y: 100, opacity: 0, transition: { duration: 1 } },
@@ -46,8 +54,8 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, months, updateMonths
     const todayIndex = months.findIndex(card => card.date === today.getDate().toString());
     useEffect(() => {
         if (todayIndex >= 0) {
-            setStartIndex(todayIndex);
-            setEndIndex(todayIndex + 2);
+            handleSetStartIndex(todayIndex);
+            handleSetEndIndex(todayIndex + 2);
         }
     }, [todayIndex]);
 
@@ -60,12 +68,12 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, months, updateMonths
 
         if (endIndex < months.length - 1) {
             if (endIndex - startIndex < 2) {
-                setStartIndex(startIndex + 2);
-                setEndIndex(endIndex + 3);
+                handleSetStartIndex(startIndex + 2);
+                handleSetEndIndex(endIndex + 3);
             }
             else {
-                setStartIndex(startIndex + 3);
-                setEndIndex(endIndex + 3);
+                handleSetStartIndex(startIndex + 3);
+                handleSetEndIndex(endIndex + 3);
 
             }
         }
@@ -83,10 +91,19 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, months, updateMonths
             newStartIndex = startIndex - 3;
             newEndIndex = endIndex - 3;
         }
-        setStartIndex(newStartIndex);
-        setEndIndex(newEndIndex);
+        handleSetStartIndex(newStartIndex);
+        handleSetEndIndex(newEndIndex);
     };
-
+    
+    useEffect(() => {
+        if (dropdownChanged) {
+            let newStartIndex=searchDropdownDate(months, selectedDropdown);
+            handleSetStartIndex(newStartIndex);
+            handleSetEndIndex(newStartIndex+2);
+            handleSetDropdownChanged(false);
+            onClickNavbarDate(selectedDropdown);
+        }
+      }, [dropdownChanged]);
     return (
         <>
             <div style={{ position: "relative" }}>
@@ -118,6 +135,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, months, updateMonths
                                     onClickNavbarDate={onClickNavbarDate}
                                     selected={selectedCard === index}
                                     holiday={holidays}
+                                    selectedDate={selectedDate}
                                 />
                             ))}
                         </div>
