@@ -1,8 +1,8 @@
-import Navbar from "../components/navbar";
 import { useState } from "react";
-import CardCarousel from "../components/card-carousel";
 import { holidays } from "../data/holidays";
 import { calculateMonth } from "../helpers/calculate-month";
+import CardCarouselContainer from "../containers/card-carousel-container";
+import NavbarContainer from "../containers/navbar-container";
 interface Holiday {
     name: string;
     date: string;
@@ -56,8 +56,8 @@ const CalendarPage: React.FC<Props> = () => {
     
     return (
         <>
-        <Navbar date={selectedDate} months={months} updateMonths={updateMonths} handleDrodpownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
-        <CardCarousel onClickNavbarDate={handleNavbarDateValue} holiday={holidays} months={months} updateMonths={updateMonths} selectedDate={selectedDate} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
+        <NavbarContainer date={selectedDate} months={months} updateMonths={updateMonths} handleDrodpownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
+        <CardCarouselContainer onClickNavbarDate={handleNavbarDateValue} holiday={holidays} months={months} updateMonths={updateMonths} selectedDate={selectedDate} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
         </>
     );
 };
