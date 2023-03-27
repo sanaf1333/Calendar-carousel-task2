@@ -53,7 +53,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                             animate="visible"
                             exit="hidden"
                             variants={variants}
-                            style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 2 }}
+                            style={{ position: "absolute", top: -10, left: 0, right: 0, bottom: 0, zIndex: 2 }}
                         >
                             <AddEventContainer onClickAddEvent={handleAddEvent} />
                         </motion.div>
@@ -68,13 +68,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                         
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             {months.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
-                               <motion.div
-                               variants={divvariants}
-                               initial="hidden"
-                               animate="visible"
-                               exit="exit"
-                               transition={{ duration: 1.3 }}
-                             >
+                              
                                 <DateCardContainer key={index} {...calendarDays}
                                     index={index}
                                     onClick={(index: number) => handleCardClick(index)}
@@ -84,7 +78,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                                     selectedDate={selectedDate}
                                     cardStyle={cardStyle}
                                 />
-                                </motion.div>
+                                
                             ))}
                         </div>
                         
