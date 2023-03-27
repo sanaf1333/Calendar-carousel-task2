@@ -49,7 +49,6 @@ Example array:
 ## CalendarCarousel cardsInRow
 
 ### Usage
-
-
+> <CalendarCarousel cardsInRow={3} />
 
 
