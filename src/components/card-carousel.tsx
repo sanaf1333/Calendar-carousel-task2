@@ -1,26 +1,24 @@
 import React from 'react';
 import { Button, Space } from 'antd';
-import DateCard from './date-card';
-import AddEventContainer from '../containers/add-event-container';
+import AddEventContainer from '@/containers/add-event-container';
 import { motion, AnimatePresence } from 'framer-motion';
-import { holidays } from '../data/holidays';
-import DateCardContainer from '../containers/date-card-container';
+import DateCardContainer from '@/containers/date-card-container';
 interface Holiday {
     name: string;
     date: string;
     month: string;
     year: number;
 }
-interface dateCardProps{
+interface dateCardProps {
     headerColor?: string;
     monthColor?: string;
     dayColor?: string;
-    dateColor?:string;
+    dateColor?: string;
     cardBackgroundColor?: string;
     cardWidth?: number;
     disabledColor?: string;
     selectedBorder?: string;
-  }
+}
 interface Props {
     onClickNavbarDate: (value: string) => void;
     holiday?: Holiday[];
@@ -32,7 +30,7 @@ interface Props {
     variants: {};
     handleAddEvent: () => void;
     handlePrev: () => void;
-    handleCardClick: (index:number) => void;
+    handleCardClick: (index: number) => void;
     handleNext: () => void;
     selectedCard: number;
     cardStyle?: dateCardProps;
@@ -40,7 +38,11 @@ interface Props {
 }
 
 const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, selectedDate, startIndex, endIndex, showAddEvent, variants, handleAddEvent, handlePrev, handleCardClick, handleNext, selectedCard, cardStyle, cardsInRow }) => {
-
+    const divvariants = {
+        hidden: { opacity: 0, x: 1 * 100 },
+        visible: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: 1 * -100 },
+      };
     return (
         <>
             <div style={{ position: "relative" }}>
@@ -63,9 +65,16 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                         <Button onClick={handlePrev}>
                             {'<'}
                         </Button>
-
+                        
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             {months.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
+                               <motion.div
+                               variants={divvariants}
+                               initial="hidden"
+                               animate="visible"
+                               exit="exit"
+                               transition={{ duration: 1.3 }}
+                             >
                                 <DateCardContainer key={index} {...calendarDays}
                                     index={index}
                                     onClick={(index: number) => handleCardClick(index)}
@@ -75,9 +84,10 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                                     selectedDate={selectedDate}
                                     cardStyle={cardStyle}
                                 />
+                                </motion.div>
                             ))}
                         </div>
-
+                        
                         <Button onClick={handleNext}>
                             {'>'}
                         </Button>

@@ -1,4 +1,4 @@
-export function calculateMonth(){
+export function calculateMonth() {
     let today: Date = new Date();
     const year = today.getFullYear();
     const daysInMonth: number = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
@@ -10,6 +10,6 @@ export function calculateMonth(){
         const month: string = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(today);
         calendarDays.push({ month, date: i.toString(), day, year });
     }
-    
+
     return calendarDays;
 }

@@ -1,26 +1,12 @@
-import {Component} from "react";
-import CalendarCarousel from "./pages/calendar-carousel-container";
-interface AppProps {
-    message?: string
-}
+import { Component } from "react";
+import CalendarCarousel from "@/pages/calendar-carousel-container";
 
-interface AppState{
-    rendered: boolean
-}
-class App extends Component<AppProps, AppState> {
-    constructor(props: AppProps) {
-        super(props);
-        this.state = {
-            rendered: false,
-        };
-    }
-   
+class App extends Component {
     render() {
-        
         return (
             <CalendarCarousel />
         );
     }
-
 }
+
 export default App;

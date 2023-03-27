@@ -17,8 +17,8 @@ interface Props {
 const AddEvent: React.FC<Props> = ({ month, date, year, options = [], duration, formatDuration, handleDurationChange, onClickAddEvent }) => {
 
     return (
-        <Col style={{backgroundColor:"white", height:"200px"}}>
-            <Row style={{marginBottom:"20px"}}>
+        <Col style={{ backgroundColor: "white", height: "200px" }}>
+            <Row style={{ marginBottom: "20px" }}>
                 <Col span={8} offset={8}>
                     Time:
                 </Col>
@@ -31,7 +31,7 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = [], duration, 
                     />
                 </Col>
             </Row >
-            <Row style={{marginBottom:"20px"}}>
+            <Row style={{ marginBottom: "20px" }}>
                 <Col span={8} offset={8}>
                     Duration
                 </Col>
@@ -47,9 +47,9 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = [], duration, 
                     </Space>
                 </Col>
             </Row>
-            <Row style={{marginBottom:"20px"}}>
+            <Row style={{ marginBottom: "20px" }}>
                 <Col span={8} offset={12}>
-                <Button onClick={onClickAddEvent}>OK</Button>
+                    <Button onClick={onClickAddEvent}>OK</Button>
                 </Col>
             </Row>
         </Col>

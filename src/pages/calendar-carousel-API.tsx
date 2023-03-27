@@ -1,6 +1,6 @@
-import { holidays } from "../data/holidays";
-import CardCarouselContainer from "../containers/card-carousel-container";
-import NavbarContainer from "../containers/navbar-container";
+import { holidays } from "@/data/holidays";
+import CardCarouselContainer from "@/containers/card-carousel-container";
+import NavbarContainer from "@/containers/navbar-container";
 interface Holiday {
     name: string;
     date: string;
@@ -34,7 +34,7 @@ interface Props {
     holiday?: Holiday[];
     selectedDate: string;
     months: any[];
-    updateMonths: (updatedMonths: any[]) => void; 
+    updateMonths: (updatedMonths: any[]) => void;
     handleDropdownChange: (value: string) => void;
     startIndex: number;
     handleSetStartIndex: (value: number) => void;
@@ -47,8 +47,8 @@ interface Props {
 }
 
 const CalendarCarouselWrapper: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays, selectedDate, months, updateMonths, handleDropdownChange, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, handleNavbarDateValue, selectedDropdown, dropdownChanged, handleSetDropdownChanged }) => {
-    
-    
+
+
     return (
         <>
             <NavbarContainer date={selectedDate} months={months} updateMonths={updateMonths} handleDrodpownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />

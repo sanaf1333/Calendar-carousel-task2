@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col } from 'antd';
-import AddEvent from "../components/add-event";
+import AddEvent from "@/components/add-event";
 
 interface Props {
     month?: string;
@@ -35,13 +35,13 @@ const AddEventContainer: React.FC<Props> = ({ month, date, year, onClickAddEvent
 
     const handleDurationChange = (amount: number) => {
         setDuration(prevDuration => {
-            const newDuration = prevDuration + amount * 60; 
+            const newDuration = prevDuration + amount * 60;
             return Math.max(newDuration, 0); // prevent negative duration
         });
     };
 
     return (
-        <Col style={{backgroundColor:"white", height:"200px"}}>
+        <Col style={{ backgroundColor: "white", height: "200px" }}>
             <AddEvent
                 month={month}
                 date={date}

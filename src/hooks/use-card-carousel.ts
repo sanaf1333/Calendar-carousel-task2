@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { calculateNextMonth } from '../helpers/calculate-next';
-import { calculatePrevMonth } from '../helpers/calculate-prev';
-import { searchDropdownDate } from '../helpers/search-dropdown-date';
+import { useEffect } from 'react';
+import { calculateNextMonth } from '@/helpers/calculate-next';
+import { calculatePrevMonth } from '@/helpers/calculate-prev';
+import { searchDropdownDate } from '@/helpers/search-dropdown-date';
 interface UseCarouselProps {
   startIndex: number;
   endIndex: number;
@@ -10,10 +10,10 @@ interface UseCarouselProps {
   months: any[];
   updateMonths: (updatedMonths: any[]) => void;
   selectedDropdown: string;
-    dropdownChanged: boolean;
-    handleSetDropdownChanged: (value: boolean)=>void;
-    onClickNavbarDate: (value: string) => void;
-    cardsInRow?: number;
+  dropdownChanged: boolean;
+  handleSetDropdownChanged: (value: boolean) => void;
+  onClickNavbarDate: (value: string) => void;
+  cardsInRow?: number;
 }
 
 const useCarousel = ({
@@ -23,21 +23,21 @@ const useCarousel = ({
   handleSetEndIndex,
   months,
   updateMonths,
-  selectedDropdown, 
-  dropdownChanged, 
+  selectedDropdown,
+  dropdownChanged,
   handleSetDropdownChanged,
   onClickNavbarDate,
-  cardsInRow=3,
+  cardsInRow = 3,
 }: UseCarouselProps) => {
-  
+
   let today: Date = new Date();
-    const todayIndex = months.findIndex(card => card.date === today.getDate().toString());
-    useEffect(() => {
-        if (todayIndex >= 0) {
-            handleSetStartIndex(todayIndex);
-            handleSetEndIndex(todayIndex + cardsInRow-1);
-        }
-    }, [todayIndex]);
+  const todayIndex = months.findIndex(card => card.date === today.getDate().toString());
+  useEffect(() => {
+    if (todayIndex >= 0) {
+      handleSetStartIndex(todayIndex);
+      handleSetEndIndex(todayIndex + cardsInRow - 1);
+    }
+  }, [todayIndex]);
 
   const handleNext = () => {
     if (months.length - endIndex <= cardsInRow) {
@@ -50,8 +50,8 @@ const useCarousel = ({
     }
 
     if (endIndex < months.length - 1) {
-      if (endIndex - startIndex < cardsInRow-1) {
-        handleSetStartIndex(startIndex + cardsInRow-1);
+      if (endIndex - startIndex < cardsInRow - 1) {
+        handleSetStartIndex(startIndex + cardsInRow - 1);
         handleSetEndIndex(endIndex + cardsInRow);
       } else {
         handleSetStartIndex(startIndex + cardsInRow);
@@ -82,11 +82,11 @@ const useCarousel = ({
 
   useEffect(() => {
     if (dropdownChanged) {
-        let newStartIndex=searchDropdownDate(months, selectedDropdown);
-        handleSetStartIndex(newStartIndex);
-        handleSetEndIndex(newStartIndex+cardsInRow-1);
-        handleSetDropdownChanged(false);
-        onClickNavbarDate(selectedDropdown);
+      let newStartIndex = searchDropdownDate(months, selectedDropdown);
+      handleSetStartIndex(newStartIndex);
+      handleSetEndIndex(newStartIndex + cardsInRow - 1);
+      handleSetDropdownChanged(false);
+      onClickNavbarDate(selectedDropdown);
     }
   }, [dropdownChanged]);
   return {

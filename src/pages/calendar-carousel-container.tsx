@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { holidays } from "../data/holidays";
-import { calculateMonth } from "../helpers/calculate-month";
+import { holidays } from "@/data/holidays";
+import { calculateMonth } from "@/helpers/calculate-month";
 import CalendarCarouselWrapper from "./calendar-carousel-API";
 interface Holiday {
     name: string;
@@ -25,7 +25,7 @@ const defaultProps: dateCardProps = {
     dayColor: 'gray',
     dateColor: 'gray',
     cardBackgroundColor: 'white',
-    cardWidth: 200,
+    cardWidth: 150,
     disabledColor: 'gray',
     selectedBorder: '1px solid gray',
 };
@@ -71,7 +71,7 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = ho
 
     return (
         <>
-            
+
             <CalendarCarouselWrapper cardStyle={mergedCardStyle} cardsInRow={cardsInRow} holiday={holiday} selectedDate={selectedDate} months={months} updateMonths={updateMonths} handleDropdownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} />
         </>
     );

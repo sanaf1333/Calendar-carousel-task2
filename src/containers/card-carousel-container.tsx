@@ -1,10 +1,6 @@
-import useCarousel from '../hooks/use-card-carousel';
+import useCarousel from '@/hooks/use-card-carousel';
 import React, { useState, useEffect } from 'react';
-import { calculateNextMonth } from '../helpers/calculate-next';
-import { calculatePrevMonth } from '../helpers/calculate-prev';
-import { holidays } from '../data/holidays';
-import { searchDropdownDate } from '../helpers/search-dropdown-date';
-import CardCarousel from '../components/card-carousel';
+import CardCarousel from '@/components/card-carousel';
 interface Holiday {
   name: string;
   date: string;
@@ -12,11 +8,11 @@ interface Holiday {
   year: number;
 }
 
-interface dateCardProps{
+interface dateCardProps {
   headerColor?: string;
   monthColor?: string;
   dayColor?: string;
-  dateColor?:string;
+  dateColor?: string;
   cardBackgroundColor?: string;
   cardWidth?: number;
   disabledColor?: string;
@@ -40,7 +36,7 @@ interface Props {
   cardsInRow?: number;
 }
 
-const CardCarouselContainer: React.FC<Props> =({ onClickNavbarDate, holiday, months, updateMonths, selectedDate, selectedDropdown, dropdownChanged, handleSetDropdownChanged, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow }) => {
+const CardCarouselContainer: React.FC<Props> = ({ onClickNavbarDate, holiday, months, updateMonths, selectedDate, selectedDropdown, dropdownChanged, handleSetDropdownChanged, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow }) => {
   const [selectedCard, setSelectedCard] = useState(-1);
   const [showAddEvent, setShowAddEvent] = useState(false);
 

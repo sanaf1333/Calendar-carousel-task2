@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { calculateNextMonth } from "../helpers/calculate-next";
-import { calculatePrevMonth } from "../helpers/calculate-prev";
-import Navbar from "../components/navbar";
+import { calculateNextMonth } from "@/helpers/calculate-next";
+import { calculatePrevMonth } from "@/helpers/calculate-prev";
+import Navbar from "@/components/navbar";
 interface Props {
   date: string;
   months: any[];
   updateMonths: (updatedMonths: any[]) => void;
   handleDrodpownChange: (value: string) => void;
   startIndex: number;
-    handleSetStartIndex: (value: number) => void;
-    endIndex: number;
-    handleSetEndIndex: (value: number) => void;
+  handleSetStartIndex: (value: number) => void;
+  endIndex: number;
+  handleSetEndIndex: (value: number) => void;
 }
 
 const NavbarContainer: React.FC<Props> = ({ date, months, handleDrodpownChange, updateMonths, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex }) => {
@@ -41,17 +41,17 @@ const NavbarContainer: React.FC<Props> = ({ date, months, handleDrodpownChange, 
     setSelectedOption(options[selectedOptionIndex]?.value ?? '');
   }, [date, months]);
 
-  const onChangeDropdown = (value:string)=>{
+  const onChangeDropdown = (value: string) => {
     setSelectedOption(value);
     handleDrodpownChange(value);
-    
+
   }
 
   const onScrollSelect = (event: React.UIEvent<HTMLDivElement>) => {
     const target = event.target as HTMLDivElement;
     const isTop = target.scrollTop === 0;
     const isBottom = target.scrollHeight - target.scrollTop === target.clientHeight;
-  
+
     if (isTop) {
       const prevMonthDays = calculatePrevMonth(months[0].month, months[0].year);
       const newDays = [...prevMonthDays, ...months];
@@ -61,10 +61,10 @@ const NavbarContainer: React.FC<Props> = ({ date, months, handleDrodpownChange, 
       handleSetStartIndex(newStartIndex);
       handleSetEndIndex(newEndIndex);
     } else if (isBottom) {
-      const nextMonthDays = calculateNextMonth(months[months.length-1].month, months[months.length-1].year);
+      const nextMonthDays = calculateNextMonth(months[months.length - 1].month, months[months.length - 1].year);
       const newDays = [...months, ...nextMonthDays];
       updateMonths(newDays);
-    } 
+    }
   };
   return (
     <Navbar options={options} selectedOption={selectedOption} onChangeDropdown={onChangeDropdown} onScrollSelect={onScrollSelect} />

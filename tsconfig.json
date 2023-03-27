@@ -6,7 +6,17 @@
         "strictNullChecks": true,
         "esModuleInterop": true,
         "noImplicitAny": false,
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "baseUrl": "./src",
+        "paths": {
+        "@/*": ["*"],
+        "components/*": ["components/*"],
+        "pages/*": ["pages/*"],
+        "containers/*": ["containers/*"],
+        "data/*": ["data/*"],
+        "helpers/*": ["helpers/*"],
+        "hooks/*": ["hooks/*"]
+        }
     },
     "types": [
         "react",
