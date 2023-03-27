@@ -7,20 +7,12 @@
 
 ## CalendarCarousel Props
 
-| Props       | Type           | Default      |
-|-------------|----------------|--------------|
-| cardStyle   | interface      |              |
-| cardsInRow  | number         | 3            |
-| holiday     | Holiday[]      |              |
+| Props       | Type                                                               | Default      | Explaination 
+|-------------|--------------------------------------------------------------------|--------------|-------------------------------------------------------------------|
+| cardStyle   | interface                                                          |              | It includes various props for the styling of card                 |
+| cardsInRow  | number                                                             | 3            | Number of cards you want to show in a row                         |
+| holiday     | { date: string; month: string; year: number; name: string }[]      | holiday[]    | Any holidays or disabled dates that you want to add. Events cannot|                                                                                                       be added on disabled dates
 
-headerColor: '#eb4c34',
-    monthColor: 'white',
-    dayColor: 'gray',
-    dateColor: 'gray',
-    cardBackgroundColor: 'white',
-    cardWidth: 200,
-    disabledColor: 'gray',
-    selectedBorder: '1px solid gray',
 
 ## CalendarCarousel cardStyle
 
@@ -34,3 +26,20 @@ headerColor: '#eb4c34',
 | cardWidth             | number   | 200            |
 | disabledColor         | string   | gray           |
 | selectedBorder        | string   | 1px solid gray |
+
+### <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
+
+##CalendarCarousel holiday
+
+export const holidays: { date: string; month: string; year: number; name: string }[] = [
+    { date: "1", month: "January", year: 2023, name: "New Year's Day" },
+    { date: "14", month: "April", year: 2023, name: "Good Friday" },
+    { date: "29", month: "march", year: 2023, name: "Mother's Day" },
+    { date: "1", month: "May", year: 2023, name: "Labor Day" },
+    { date: "14", month: "August", year: 2023, name: "Independence" },
+  ];
+  
+ ### <CalendarCarousel holiday={holidays} />
+
+
+
