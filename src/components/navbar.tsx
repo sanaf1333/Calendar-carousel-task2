@@ -1,7 +1,5 @@
-import { Layout, Select, Typography } from "antd";
-const { Header } = Layout;
+import { Select, Typography, Col, Row } from "antd";
 const { Title } = Typography;
-import { Col, Row } from 'antd';
 interface Props {
   options: Array<{ value: string, label: string }>
   selectedOption: string;

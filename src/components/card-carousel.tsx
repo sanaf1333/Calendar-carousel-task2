@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Space } from 'antd';
+import { Button, Space, Layout } from 'antd';
 import AddEventContainer from '@/containers/add-event-container';
 import { motion, AnimatePresence } from 'framer-motion';
 import DateCardContainer from '@/containers/date-card-container';
@@ -38,14 +38,10 @@ interface Props {
 }
 
 const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, selectedDate, startIndex, endIndex, showAddEvent, variants, handleAddEvent, handlePrev, handleCardClick, handleNext, selectedCard, cardStyle, cardsInRow }) => {
-    const divvariants = {
-        hidden: { opacity: 0, x: 1 * 100 },
-        visible: { opacity: 1, x: 0 },
-        exit: { opacity: 0, x: 1 * -100 },
-      };
+    
     return (
         <>
-            <div style={{ position: "relative" }}>
+            <Layout style={{ position: "relative", backgroundColor: "white" }}>
                 {showAddEvent && (
                     <AnimatePresence>
                         <motion.div
@@ -60,13 +56,13 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                     </AnimatePresence>
                 )}
 
-                <div style={{ position: "relative", zIndex: 1 }}>
+                <Layout style={{ position: "relative", zIndex: 1, backgroundColor: "white" }}>
                     <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }}>
                         <Button onClick={handlePrev}>
                             {'<'}
                         </Button>
                         
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Layout style={{ display: 'flex', justifyContent: 'center', flexDirection: "row", backgroundColor: "white" }}>
                             {months.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
                               
                                 <DateCardContainer key={index} {...calendarDays}
@@ -80,14 +76,14 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                                 />
                                 
                             ))}
-                        </div>
+                        </Layout>
                         
                         <Button onClick={handleNext}>
                             {'>'}
                         </Button>
                     </Space>
-                </div>
-            </div>
+                </Layout>
+            </Layout>
         </>
 
     );

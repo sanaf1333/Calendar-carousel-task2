@@ -1,7 +1,6 @@
-import { Card, Space } from 'antd';
+import { Card, Space, Typography } from 'antd';
 import React from 'react';
 const { Meta } = Card;
-import { Typography } from 'antd';
 const { Title } = Typography;
 interface Holiday {
     name: string;

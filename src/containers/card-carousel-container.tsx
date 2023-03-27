@@ -1,5 +1,5 @@
 import useCarousel from '@/hooks/use-card-carousel';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CardCarousel from '@/components/card-carousel';
 interface Holiday {
   name: string;

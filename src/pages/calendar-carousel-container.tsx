@@ -71,7 +71,6 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = ho
 
     return (
         <>
-
             <CalendarCarouselWrapper cardStyle={mergedCardStyle} cardsInRow={cardsInRow} holiday={holiday} selectedDate={selectedDate} months={months} updateMonths={updateMonths} handleDropdownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} />
         </>
     );

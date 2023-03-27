@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Col, Row } from 'antd';
-import { Select, Space, Button } from 'antd';
+import React from "react";
+import { Select, Space, Button, Typography, Col, Row } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+const { Text } = Typography;
 
 interface Props {
     month?: string;
@@ -20,7 +21,7 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = [], duration, 
         <Col style={{ backgroundColor: "white", height: "200px" }}>
             <Row style={{ marginBottom: "20px" }}>
                 <Col span={8} offset={8}>
-                    Time:
+                <Text strong>Time:</Text>
                 </Col>
                 <Col span={8}>
                     <Select
@@ -28,20 +29,21 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = [], duration, 
                         style={{ width: 120 }}
                         options={options}
                         bordered={false}
+                        suffixIcon={<DownOutlined style={{ color: 'blue' }} />}
                     />
                 </Col>
             </Row >
             <Row style={{ marginBottom: "20px" }}>
                 <Col span={8} offset={8}>
-                    Duration
+                <Text strong>Duration</Text>
                 </Col>
                 <Col span={8}>
                     <Space>
-                        <Button shape="circle" onClick={() => handleDurationChange(-1)}>
+                        <Button shape="circle" type="primary" ghost onClick={() => handleDurationChange(-1)}>
                             -
                         </Button>
                         <div>{formatDuration(duration)}</div>
-                        <Button shape="circle" onClick={() => handleDurationChange(1)}>
+                        <Button shape="circle" type="primary" ghost onClick={() => handleDurationChange(1)}>
                             +
                         </Button>
                     </Space>
