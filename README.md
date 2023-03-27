@@ -45,11 +45,13 @@ Example array:
 
 ### Usage 
 > <CalendarCarousel holiday={holidays} />
+> <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
 
 ## CalendarCarousel cardsInRow
 
 ### Usage
 > <CalendarCarouse cardsInRow={4} />
+> <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
 
 
 
