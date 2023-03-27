@@ -1,16 +1,33 @@
-import Layout from "antd/es/layout/layout";
-import { Header } from "antd/es/layout/layout";
-
+import { Select, Typography, Col, Row } from "antd";
+const { Title } = Typography;
 interface Props {
-    date: string;
-  }
+  options: Array<{ value: string, label: string }>
+  selectedOption: string;
+  onChangeDropdown: (value: string) => void;
+  onScrollSelect: (event: React.UIEvent<HTMLDivElement>) => void;
+}
 
-const Navbar: React.FC<Props> = ({ date }) => {
-    return (
-        <Header style={{color: "white"}}>            
-           <div>selected date: {date}</div>
-        </Header>
-    );
+const Navbar: React.FC<Props> = ({ options, selectedOption, onChangeDropdown, onScrollSelect }) => {
+
+  return (
+    <Row justify="center" style={{marginBottom: 50}} gutter={300}>
+      <Col >
+      <Title level={5} style={{  margin: 0 }}>
+        Date
+      </Title>
+      </Col>
+      <Col >
+      <Select
+        value={selectedOption}
+        style={{ float:"right",  margin: 0, width: 150, backgroundColor: "white", color: "black" }}
+        options={options}
+        bordered={false}
+        onChange={(value) => { onChangeDropdown(value) }}
+        onPopupScroll={onScrollSelect}
+      />
+      </Col>
+    </Row>
+  );
 };
 
 export default Navbar;
