@@ -27,10 +27,15 @@
 | disabledColor         | string   | gray           |
 | selectedBorder        | string   | 1px solid gray |
 
-### <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
+Usage: <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
 
 ##CalendarCarousel holiday
 
+Example array:
+export const holiday: {date:string; month: string; year: number; name: string}[]=[
+
+
+];
 export const holidays: { date: string; month: string; year: number; name: string }[] = [
     { date: "1", month: "January", year: 2023, name: "New Year's Day" },
     { date: "14", month: "April", year: 2023, name: "Good Friday" },
@@ -39,7 +44,7 @@ export const holidays: { date: string; month: string; year: number; name: string
     { date: "14", month: "August", year: 2023, name: "Independence" },
   ];
   
- ### <CalendarCarousel holiday={holidays} />
+Usage: <CalendarCarousel holiday={holidays} />
 
 
 
