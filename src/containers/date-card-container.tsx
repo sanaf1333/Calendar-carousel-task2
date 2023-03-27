@@ -7,6 +7,16 @@ interface Holiday {
     month: string;
     year: number;
   }
+  interface dateCardProps{
+    headerColor?: string;
+    monthColor?: string;
+    dayColor?: string;
+    dateColor?:string;
+    cardBackgroundColor?: string;
+    cardWidth?: number;
+    disabledColor?: string;
+    selectedBorder?: string;
+  }
 interface Props {
     month: string;
     date: string;
@@ -18,9 +28,10 @@ interface Props {
     index: number;
     holiday?: Holiday[];
     selectedDate: string;
+    cardStyle?: dateCardProps;
 }
 
-const DateCardContainer: React.FC<Props> = ({month, date, day, year, onClick, onClickNavbarDate, selected, index, holiday, selectedDate}) => {
+const DateCardContainer: React.FC<Props> = ({month, date, day, year, onClick, onClickNavbarDate, selected, index, holiday, selectedDate, cardStyle}) => {
 
     
       let dateInput=`${month} ${date}, ${year}`;
@@ -37,7 +48,7 @@ const DateCardContainer: React.FC<Props> = ({month, date, day, year, onClick, on
         }       
       }
     return (
-        <DateCard month={month} date={date} day={day} index={index} selectedDate={selectedDate} isHoliday={isHoliday} dateInput={dateInput} handleCardClick={handleCardClick} />
+        <DateCard month={month} date={date} day={day} index={index} selectedDate={selectedDate} isHoliday={isHoliday} dateInput={dateInput} handleCardClick={handleCardClick} cardStyle={cardStyle} />
     );
 
 

@@ -1,5 +1,5 @@
 import React, {Component, useState} from "react";
-import CalendarPage from "../pages/calendar";
+import CalendarCarousel from "../pages/calendar-carousel";
 import { holidays } from "../data/holidays";
 interface AppProps {
     message?: string
@@ -19,7 +19,7 @@ class App extends Component<AppProps, AppState> {
     render() {
         
         return (
-            <CalendarPage holidays={holidays} />
+            <CalendarCarousel holidays={holidays} />
         );
     }
 

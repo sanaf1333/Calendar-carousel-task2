@@ -9,20 +9,38 @@ interface Holiday {
     month: string;
     year: number;
   }
-interface Props {
+
+interface dateCardProps{
     headerColor?: string;
     monthColor?: string;
     dayColor?: string;
     dateColor?:string;
     cardBackgroundColor?: string;
     cardWidth?: number;
-    cardsInRow?: number;
     disabledColor?: string;
-    disbaledDates?: Date[];
+    selectedBorder?: string;
+}
+const defaultProps: dateCardProps = {
+    headerColor: 'red',
+    monthColor: 'white',
+    dayColor: 'gray',
+    dateColor: 'gray',
+    cardBackgroundColor: 'white',
+    cardWidth: 200,
+    disabledColor: 'gary',
+    selectedBorder: '1px solid gray',
+};
+interface Props {
+    cardStyle?: dateCardProps;
+    cardsInRow?: number;
     holidays?: Holiday[];
   }
 
-const CalendarPage: React.FC<Props> = () => {
+const CalendarCarousel: React.FC<Props> = ({cardStyle, cardsInRow, holidays}) => {
+    const mergedCardStyle = {
+        ...defaultProps,
+        ...cardStyle,
+    };
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(2);
     function handleSetStartIndex(value: number){
@@ -57,9 +75,9 @@ const CalendarPage: React.FC<Props> = () => {
     return (
         <>
         <NavbarContainer date={selectedDate} months={months} updateMonths={updateMonths} handleDrodpownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
-        <CardCarouselContainer onClickNavbarDate={handleNavbarDateValue} holiday={holidays} months={months} updateMonths={updateMonths} selectedDate={selectedDate} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
+        <CardCarouselContainer onClickNavbarDate={handleNavbarDateValue} holiday={holidays} months={months} updateMonths={updateMonths} selectedDate={selectedDate} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} cardStyle={mergedCardStyle} />
         </>
     );
 };
 
-export default CalendarPage;
+export default CalendarCarousel;

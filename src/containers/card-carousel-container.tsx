@@ -11,6 +11,18 @@ interface Holiday {
   month: string;
   year: number;
 }
+
+interface dateCardProps{
+  headerColor?: string;
+  monthColor?: string;
+  dayColor?: string;
+  dateColor?:string;
+  cardBackgroundColor?: string;
+  cardWidth?: number;
+  disabledColor?: string;
+  selectedBorder?: string;
+}
+
 interface Props {
   onClickNavbarDate: (value: string) => void;
   holiday?: Holiday[];
@@ -24,9 +36,10 @@ interface Props {
   handleSetStartIndex: (value: number) => void;
   endIndex: number;
   handleSetEndIndex: (value: number) => void;
+  cardStyle?: dateCardProps;
 }
 
-const CardCarouselContainer = ({ onClickNavbarDate, holiday, months, updateMonths, selectedDate, selectedDropdown, dropdownChanged, handleSetDropdownChanged, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex }) => {
+const CardCarouselContainer: React.FC<Props> =({ onClickNavbarDate, holiday, months, updateMonths, selectedDate, selectedDropdown, dropdownChanged, handleSetDropdownChanged, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle }) => {
   const [selectedCard, setSelectedCard] = useState(-1);
   const [showAddEvent, setShowAddEvent] = useState(false);
 
@@ -75,6 +88,7 @@ const CardCarouselContainer = ({ onClickNavbarDate, holiday, months, updateMonth
       startIndex={startIndex}
       endIndex={endIndex}
       variants={variants}
+      cardStyle={cardStyle}
     />
   );
 };

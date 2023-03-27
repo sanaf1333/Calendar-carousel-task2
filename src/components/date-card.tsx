@@ -9,6 +9,16 @@ interface Holiday {
     month: string;
     year: number;
   }
+  interface dateCardProps{
+    headerColor?: string;
+    monthColor?: string;
+    dayColor?: string;
+    dateColor?:string;
+    cardBackgroundColor?: string;
+    cardWidth?: number;
+    disabledColor?: string;
+    selectedBorder?: string;
+  }
 interface Props {
     month: string;
     date: string;
@@ -19,9 +29,10 @@ interface Props {
     isHoliday: boolean | undefined;
     dateInput: string;
     handleCardClick: (index:number)=> void;
+    cardStyle?: dateCardProps;
 }
 
-const DateCard: React.FC<Props> = ({month, date, day, index, selectedDate, isHoliday, dateInput, handleCardClick}) => {
+const DateCard: React.FC<Props> = ({month, date, day, index, selectedDate, isHoliday, dateInput, handleCardClick, cardStyle}) => {
 
     return (
         <Space style={{ margin: '0 10px' }}>
@@ -32,24 +43,24 @@ const DateCard: React.FC<Props> = ({month, date, day, index, selectedDate, isHol
                     bordered={false}
                     hoverable
                     style={{
-                        width: 200,
+                        width: cardStyle?.cardWidth,
                         padding: 0,
                         textAlign: 'center',
-                        border: !isHoliday && dateInput===selectedDate ? '2px solid pink' : 'none',
-                        boxShadow: !isHoliday && dateInput===selectedDate ? '1px 1px 1px 1px #c2c1c0': 'none',
+                        border: !isHoliday && dateInput===selectedDate ? cardStyle?.selectedBorder : 'none',
+                        backgroundColor: cardStyle?.cardBackgroundColor,
                     }}
-                    headStyle={{ backgroundColor: isHoliday? 'gray': 'pink', color: 'white' }}
+                    headStyle={{ backgroundColor: isHoliday? cardStyle?.disabledColor: cardStyle?.headerColor, color: cardStyle?.monthColor }}
                     bodyStyle={{ padding: 0, margin: 0 }}
                     onClick={() => handleCardClick(index)}
                     
                 >
                     <Title
-                        type="secondary"
                         style={{
                             fontWeight: 'bold',
                             fontSize: 54,
                             padding: 0,
                             margin: 10,
+                            color: cardStyle?.dateColor,
                         }}
                     >
                         {date}
@@ -57,9 +68,8 @@ const DateCard: React.FC<Props> = ({month, date, day, index, selectedDate, isHol
                     <Meta
                         description={
                             <Title
-                                type="secondary"
                                 level={5}
-                                style={{ padding: 0, margin: 10 }}
+                                style={{ padding: 0, margin: 10, color: cardStyle?.dayColor }}
                             >
                                 {isHoliday? 'Closed':  day}
                             </Title>
