@@ -3,7 +3,7 @@
 ![calendar-carousel-API](https://dev-portal.carbonteq.com/assets/images/calendar-1cfb9243f6a61a44033ca1b28524889d.gif)
 
 ## API
-<CalendarCarousel />
+> <CalendarCarousel />
 
 ## CalendarCarousel Props
 
@@ -28,7 +28,7 @@
 | selectedBorder        | string   | 1px solid gray | Border styling when card is selected                       |
 
 ### Usage
-<CalendarCarousel cardStyle={{headerColor: 'blue'}} />
+> <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
 
 ## CalendarCarousel holiday
 
@@ -44,12 +44,12 @@ Example array:
 |];                                                                                 |
 
 ### Usage 
-<CalendarCarousel holiday={holidays} />
+> <CalendarCarousel holiday={holidays} />
 
 ## CalendarCarousel cardsInRow
 
 ### Usage
-<CalendarCarouse cardsInRow={4} />
+> <CalendarCarouse cardsInRow={4} />
 
 
 
