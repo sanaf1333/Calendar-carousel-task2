@@ -1,6 +1,5 @@
 import {Component} from "react";
-import CalendarCarousel from "./pages/calendar-carousel";
-import CalendarCarouselContainer from "./pages/calendar-carousel-container";
+import CalendarCarousel from "./pages/calendar-carousel-container";
 interface AppProps {
     message?: string
 }
@@ -19,7 +18,7 @@ class App extends Component<AppProps, AppState> {
     render() {
         
         return (
-            <CalendarCarouselContainer />
+            <CalendarCarousel />
         );
     }
 

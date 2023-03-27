@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { holidays } from "../data/holidays";
 import { calculateMonth } from "../helpers/calculate-month";
-import CardCarouselContainer from "../containers/card-carousel-container";
-import NavbarContainer from "../containers/navbar-container";
-import CalendarCarouselWrapper from "./calendar-carousel-component";
+import CalendarCarouselWrapper from "./calendar-carousel-API";
 interface Holiday {
     name: string;
     date: string;
@@ -37,7 +35,7 @@ interface Props {
     holiday?: Holiday[];
 }
 
-const CalendarCarouselContainer: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays }) => {
+const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays }) => {
     const mergedCardStyle = {
         ...defaultProps,
         ...cardStyle,
@@ -79,4 +77,4 @@ const CalendarCarouselContainer: React.FC<Props> = ({ cardStyle, cardsInRow, hol
     );
 };
 
-export default CalendarCarouselContainer;
+export default CalendarCarousel;
