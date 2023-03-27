@@ -11,7 +11,7 @@
 |-------------|--------------------------------------------------------------------|--------------|-------------------------------------------------------------------|
 | cardStyle   | interface                                                          |              | It includes various props for the styling of card                 |
 | cardsInRow  | number                                                             | 3            | Number of cards you want to show in a row                         |
-| holiday     | { date: string; month: string; year: number; name: string }[]      | holiday[]    | Any holidays or disabled dates that you want to add. Events cannot|                                                                                                       be added on disabled dates
+| holiday     | { date: string; month: string; year: number; name: string }[]      | holiday[]    | Any holidays or disabled dates that you want to add. Events cannot be added on disabled dates|                                                                                                       
 
 
 ## CalendarCarousel cardStyle
