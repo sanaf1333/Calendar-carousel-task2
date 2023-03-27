@@ -27,7 +27,8 @@
 | disabledColor         | string   | gray           | Card header color if it is disabled                        |
 | selectedBorder        | string   | 1px solid gray | Border styling when card is selected                       |
 
-Usage: <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
+### Usage
+<CalendarCarousel cardStyle={{headerColor: 'blue'}} />
 
 ## CalendarCarousel holiday
 
@@ -42,11 +43,13 @@ Example array:
 |   { date: "14", month: "August", year: 2023, name: "Independence" },              |
 |];                                                                                 |
 
-Usage: <CalendarCarousel holiday={holidays} />
+### Usage 
+<CalendarCarousel holiday={holidays} />
 
 ## CalendarCarousel cardsInRow
 
-Usage: <CalendarCarouse cardsInRow={4} />
+### Usage
+<CalendarCarouse cardsInRow={4} />
 
 
 
