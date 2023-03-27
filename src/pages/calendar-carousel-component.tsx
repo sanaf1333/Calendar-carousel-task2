@@ -34,42 +34,26 @@ interface Props {
     cardStyle?: dateCardProps;
     cardsInRow?: number;
     holiday?: Holiday[];
+    selectedDate: string;
+    months: any[];
+    updateMonths: (updatedMonths: any[]) => void; 
+    handleDropdownChange: (value: string) => void;
+    startIndex: number;
+    handleSetStartIndex: (value: number) => void;
+    endIndex: number;
+    handleSetEndIndex: (value: number) => void;
+    handleNavbarDateValue: (value: string) => void;
+    selectedDropdown: string;
+    dropdownChanged: boolean;
+    handleSetDropdownChanged: (value: boolean) => void;
 }
 
-const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays }) => {
+const CalendarCarouselWrapper: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays, selectedDate, months, updateMonths, handleDropdownChange, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, handleNavbarDateValue, selectedDropdown, dropdownChanged, handleSetDropdownChanged }) => {
     const mergedCardStyle = {
         ...defaultProps,
         ...cardStyle,
     };
-    const [startIndex, setStartIndex] = useState(0);
-    const [endIndex, setEndIndex] = useState(2);
-    function handleSetStartIndex(value: number) {
-        setStartIndex(value);
-    }
-    function handleSetEndIndex(value: number) {
-        setEndIndex(value);
-    }
-    let calendarDays: { month: string; date: string; day: string; year: number }[] = [];
-    calendarDays = calculateMonth();
-    const [months, setMonths] = useState(calendarDays);
-    function updateMonths(months: []) {
-        setMonths(months);
-    }
-    const [selectedDate, setSelectedDate] = useState<string>("Today");
-    function handleNavbarDateValue(value: string) {
-        setSelectedDate(value);
-    }
-    const [selectedDropdown, setSelectedDropdown] = useState<string>("Today");
-    const [dropdownChanged, setDropdownChanged] = useState(false);
-    function handleSetDropdownChanged(value: boolean) {
-        setDropdownChanged(value);
-    }
-    function handleDropdownChange(value: string) {
-        setSelectedDropdown(value);
-        console.log(selectedDropdown);
-        handleSetDropdownChanged(true);
-    }
-
+    
     return (
         <>
             <NavbarContainer date={selectedDate} months={months} updateMonths={updateMonths} handleDrodpownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
@@ -78,4 +62,4 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = ho
     );
 };
 
-export default CalendarCarousel;
+export default CalendarCarouselWrapper;

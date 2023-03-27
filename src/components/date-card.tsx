@@ -41,7 +41,7 @@ const DateCard: React.FC<Props> = ({month, date, day, index, selectedDate, isHol
                     type="inner"
                     title={month}
                     bordered={false}
-                    hoverable
+                    hoverable={!isHoliday}
                     style={{
                         width: cardStyle?.cardWidth,
                         padding: 0,

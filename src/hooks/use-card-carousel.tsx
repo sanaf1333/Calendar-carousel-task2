@@ -13,6 +13,7 @@ interface UseCarouselProps {
     dropdownChanged: boolean;
     handleSetDropdownChanged: (value: boolean)=>void;
     onClickNavbarDate: (value: string) => void;
+    cardsInRow?: number;
 }
 
 const useCarousel = ({
@@ -25,7 +26,8 @@ const useCarousel = ({
   selectedDropdown, 
   dropdownChanged, 
   handleSetDropdownChanged,
-  onClickNavbarDate
+  onClickNavbarDate,
+  cardsInRow=3,
 }: UseCarouselProps) => {
   
   let today: Date = new Date();
@@ -33,12 +35,12 @@ const useCarousel = ({
     useEffect(() => {
         if (todayIndex >= 0) {
             handleSetStartIndex(todayIndex);
-            handleSetEndIndex(todayIndex + 2);
+            handleSetEndIndex(todayIndex + cardsInRow-1);
         }
     }, [todayIndex]);
 
   const handleNext = () => {
-    if (months.length - endIndex <= 3) {
+    if (months.length - endIndex <= cardsInRow) {
       const nextMonthDays = calculateNextMonth(
         months[startIndex].month,
         months[startIndex].year
@@ -48,12 +50,12 @@ const useCarousel = ({
     }
 
     if (endIndex < months.length - 1) {
-      if (endIndex - startIndex < 2) {
-        handleSetStartIndex(startIndex + 2);
-        handleSetEndIndex(endIndex + 3);
+      if (endIndex - startIndex < cardsInRow-1) {
+        handleSetStartIndex(startIndex + cardsInRow-1);
+        handleSetEndIndex(endIndex + cardsInRow);
       } else {
-        handleSetStartIndex(startIndex + 3);
-        handleSetEndIndex(endIndex + 3);
+        handleSetStartIndex(startIndex + cardsInRow);
+        handleSetEndIndex(endIndex + cardsInRow);
       }
     }
   };
@@ -61,18 +63,18 @@ const useCarousel = ({
   const handlePrev = () => {
     let newStartIndex = startIndex;
     let newEndIndex = endIndex;
-    if (startIndex <= 3) {
+    if (startIndex <= cardsInRow) {
       const prevMonthDays = calculatePrevMonth(
         months[startIndex].month,
         months[startIndex].year
       );
       const newDays = [...prevMonthDays, ...months];
       updateMonths(newDays);
-      newStartIndex = startIndex + prevMonthDays.length - 3;
-      newEndIndex = endIndex + prevMonthDays.length - 3;
+      newStartIndex = startIndex + prevMonthDays.length - cardsInRow;
+      newEndIndex = endIndex + prevMonthDays.length - cardsInRow;
     } else {
-      newStartIndex = startIndex - 3;
-      newEndIndex = endIndex - 3;
+      newStartIndex = startIndex - cardsInRow;
+      newEndIndex = endIndex - cardsInRow;
     }
     handleSetStartIndex(newStartIndex);
     handleSetEndIndex(newEndIndex);
@@ -82,7 +84,7 @@ const useCarousel = ({
     if (dropdownChanged) {
         let newStartIndex=searchDropdownDate(months, selectedDropdown);
         handleSetStartIndex(newStartIndex);
-        handleSetEndIndex(newStartIndex+2);
+        handleSetEndIndex(newStartIndex+cardsInRow-1);
         handleSetDropdownChanged(false);
         onClickNavbarDate(selectedDropdown);
     }

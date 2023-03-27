@@ -37,9 +37,10 @@ interface Props {
   endIndex: number;
   handleSetEndIndex: (value: number) => void;
   cardStyle?: dateCardProps;
+  cardsInRow?: number;
 }
 
-const CardCarouselContainer: React.FC<Props> =({ onClickNavbarDate, holiday, months, updateMonths, selectedDate, selectedDropdown, dropdownChanged, handleSetDropdownChanged, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle }) => {
+const CardCarouselContainer: React.FC<Props> =({ onClickNavbarDate, holiday, months, updateMonths, selectedDate, selectedDropdown, dropdownChanged, handleSetDropdownChanged, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow }) => {
   const [selectedCard, setSelectedCard] = useState(-1);
   const [showAddEvent, setShowAddEvent] = useState(false);
 
@@ -69,14 +70,15 @@ const CardCarouselContainer: React.FC<Props> =({ onClickNavbarDate, holiday, mon
     selectedDropdown,
     dropdownChanged,
     handleSetDropdownChanged,
-    onClickNavbarDate
+    onClickNavbarDate,
+    cardsInRow,
   });
 
 
   return (
     <CardCarousel
       months={months}
-      holiday={holidays}
+      holiday={holiday}
       selectedCard={selectedCard}
       showAddEvent={showAddEvent}
       handleCardClick={handleCardClick}
@@ -89,6 +91,7 @@ const CardCarouselContainer: React.FC<Props> =({ onClickNavbarDate, holiday, mon
       endIndex={endIndex}
       variants={variants}
       cardStyle={cardStyle}
+      cardsInRow={cardsInRow}
     />
   );
 };

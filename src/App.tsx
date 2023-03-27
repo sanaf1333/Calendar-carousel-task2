@@ -1,6 +1,6 @@
-import React, {Component, useState} from "react";
-import CalendarCarousel from "../pages/calendar-carousel";
-import { holidays } from "../data/holidays";
+import {Component} from "react";
+import CalendarCarousel from "./pages/calendar-carousel";
+import CalendarCarouselContainer from "./pages/calendar-carousel-container";
 interface AppProps {
     message?: string
 }
@@ -19,7 +19,7 @@ class App extends Component<AppProps, AppState> {
     render() {
         
         return (
-            <CalendarCarousel holidays={holidays} />
+            <CalendarCarouselContainer />
         );
     }
 

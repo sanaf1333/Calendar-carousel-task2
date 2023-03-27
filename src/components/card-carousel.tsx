@@ -36,9 +36,10 @@ interface Props {
     handleNext: () => void;
     selectedCard: number;
     cardStyle?: dateCardProps;
+    cardsInRow?: number;
 }
 
-const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, selectedDate, startIndex, endIndex, showAddEvent, variants, handleAddEvent, handlePrev, handleCardClick, handleNext, selectedCard, cardStyle }) => {
+const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, selectedDate, startIndex, endIndex, showAddEvent, variants, handleAddEvent, handlePrev, handleCardClick, handleNext, selectedCard, cardStyle, cardsInRow }) => {
 
     return (
         <>
@@ -70,7 +71,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, sel
                                     onClick={(index: number) => handleCardClick(index)}
                                     onClickNavbarDate={onClickNavbarDate}
                                     selected={selectedCard === index}
-                                    holiday={holidays}
+                                    holiday={holiday}
                                     selectedDate={selectedDate}
                                     cardStyle={cardStyle}
                                 />

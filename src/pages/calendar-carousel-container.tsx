@@ -3,6 +3,7 @@ import { holidays } from "../data/holidays";
 import { calculateMonth } from "../helpers/calculate-month";
 import CardCarouselContainer from "../containers/card-carousel-container";
 import NavbarContainer from "../containers/navbar-container";
+import CalendarCarouselWrapper from "./calendar-carousel-component";
 interface Holiday {
     name: string;
     date: string;
@@ -36,7 +37,7 @@ interface Props {
     holiday?: Holiday[];
 }
 
-const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays }) => {
+const CalendarCarouselContainer: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays }) => {
     const mergedCardStyle = {
         ...defaultProps,
         ...cardStyle,
@@ -72,10 +73,10 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = ho
 
     return (
         <>
-            <NavbarContainer date={selectedDate} months={months} updateMonths={updateMonths} handleDrodpownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
-            <CardCarouselContainer onClickNavbarDate={handleNavbarDateValue} holiday={holiday} months={months} updateMonths={updateMonths} selectedDate={selectedDate} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} cardStyle={mergedCardStyle} cardsInRow={cardsInRow} />
+            
+            <CalendarCarouselWrapper cardStyle={mergedCardStyle} cardsInRow={cardsInRow} holiday={holiday} selectedDate={selectedDate} months={months} updateMonths={updateMonths} handleDropdownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} />
         </>
     );
 };
 
-export default CalendarCarousel;
+export default CalendarCarouselContainer;
