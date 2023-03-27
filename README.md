@@ -5,7 +5,30 @@
 
 ## CalendarCarousel Props
 
-| Props       | Type
-| cardStyle   | 
-| cardsInRow  |
-| holiday     |
+| Props       | Type           | Default      |
+|-------------|----------------|--------------|
+| cardStyle   | interface      |              |
+| cardsInRow  | number         | 3            |
+| holiday     | Holiday[]      |              |
+
+headerColor: '#eb4c34',
+    monthColor: 'white',
+    dayColor: 'gray',
+    dateColor: 'gray',
+    cardBackgroundColor: 'white',
+    cardWidth: 200,
+    disabledColor: 'gray',
+    selectedBorder: '1px solid gray',
+
+## CalendarCarousel cardStyle
+
+| Props                 | type     | default        |
+|-----------------------|----------|----------------|
+| headerColor           | string   | #eb4c34        |
+| monthColor            | string   | white          |
+| dayColor              | string   | gray           |
+| dateColor             | string   | gray           |
+| cardBackgroundColor   | string   | white          |
+| cardWidth             | number   | 200            |
+| disabledColor         | string   | gray           |
+| selectedBorder        | string   | 1px solid gray |
