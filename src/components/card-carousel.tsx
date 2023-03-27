@@ -27,7 +27,7 @@ interface Props {
     selectedCard: number;
 }
 
-const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, months, selectedDate, startIndex, endIndex, showAddEvent, variants, handleAddEvent, handlePrev, handleCardClick, handleNext, selectedCard }) => {
+const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, holiday, months, selectedDate, startIndex, endIndex, showAddEvent, variants, handleAddEvent, handlePrev, handleCardClick, handleNext, selectedCard }) => {
 
     return (
         <>

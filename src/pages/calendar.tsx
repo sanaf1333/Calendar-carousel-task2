@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { holidays } from "../data/holidays";
 import { calculateMonth } from "../helpers/calculate-month";
-import CardCarouselContainer from "../containers/card-carousel-container";
+import CardCarouselContainer from "../containers/cc-container";
 import NavbarContainer from "../containers/navbar-container";
 interface Holiday {
     name: string;
