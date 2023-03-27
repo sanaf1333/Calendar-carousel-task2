@@ -1,5 +1,7 @@
 # Calendar-Carousel
 
+![calendar-carousel-API](https://dev-portal.carbonteq.com/assets/images/calendar-1cfb9243f6a61a44033ca1b28524889d.gif)
+
 ## API
 <CalendarCarousel />
 
