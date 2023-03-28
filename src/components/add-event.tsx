@@ -16,14 +16,14 @@ interface Props {
 
 
 const AddEvent: React.FC<Props> = ({ month, date, year, options = [], duration, formatDuration, handleDurationChange, onClickAddEvent }) => {
-
+    //handleclick here //business logic, cross component sharing in container
     return (
         <Col style={{ backgroundColor: "white", height: "200px" }}>
-            <Row style={{ marginBottom: "20px" }}>
-                <Col span={8} offset={8}>
-                <Text strong>Time:</Text>
+            <Row style={{ marginBottom: "20px" }} gutter={300} justify="center">
+                <Col >
+                    <Text strong>Time:</Text>
                 </Col>
-                <Col span={8}>
+                <Col >
                     <Select
                         defaultValue={options[0].value}
                         style={{ width: 120 }}
@@ -33,11 +33,11 @@ const AddEvent: React.FC<Props> = ({ month, date, year, options = [], duration, 
                     />
                 </Col>
             </Row >
-            <Row style={{ marginBottom: "20px" }}>
-                <Col span={8} offset={8}>
-                <Text strong>Duration</Text>
+            <Row style={{ marginBottom: "20px" }} gutter={300} justify="center">
+                <Col>
+                    <Text strong>Duration</Text>
                 </Col>
-                <Col span={8}>
+                <Col>
                     <Space>
                         <Button shape="circle" type="primary" ghost onClick={() => handleDurationChange(-1)}>
                             -

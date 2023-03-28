@@ -72,6 +72,7 @@ const CardCarouselContainer: React.FC<Props> = ({ onClickNavbarDate, holiday, mo
 
 
   return (
+    <div data-testid="card-carousel-container">
     <CardCarousel
       months={months}
       holiday={holiday}
@@ -89,6 +90,7 @@ const CardCarouselContainer: React.FC<Props> = ({ onClickNavbarDate, holiday, mo
       cardStyle={cardStyle}
       cardsInRow={cardsInRow}
     />
+    </div>
   );
 };
 

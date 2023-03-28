@@ -45,14 +45,16 @@ interface Props {
     dropdownChanged: boolean;
     handleSetDropdownChanged: (value: boolean) => void;
 }
-
+//no container, pure for page //move to comp, cont
 const CalendarCarouselWrapper: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays, selectedDate, months, updateMonths, handleDropdownChange, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, handleNavbarDateValue, selectedDropdown, dropdownChanged, handleSetDropdownChanged }) => {
 
 
     return (
         <>
+            <div >
             <NavbarContainer date={selectedDate} months={months} updateMonths={updateMonths} handleDrodpownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} />
             <CardCarouselContainer onClickNavbarDate={handleNavbarDateValue} holiday={holiday} months={months} updateMonths={updateMonths} selectedDate={selectedDate} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} cardStyle={cardStyle} cardsInRow={cardsInRow} />
+            </div>
         </>
     );
 };

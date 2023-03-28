@@ -48,6 +48,7 @@ const NavbarContainer: React.FC<Props> = ({ date, months, handleDrodpownChange, 
   }
 
   const onScrollSelect = (event: React.UIEvent<HTMLDivElement>) => {
+    console.log('onScrollSelect called');
     const target = event.target as HTMLDivElement;
     const isTop = target.scrollTop === 0;
     const isBottom = target.scrollHeight - target.scrollTop === target.clientHeight;
@@ -67,7 +68,9 @@ const NavbarContainer: React.FC<Props> = ({ date, months, handleDrodpownChange, 
     }
   };
   return (
+    <div data-testid="navbar-container">
     <Navbar options={options} selectedOption={selectedOption} onChangeDropdown={onChangeDropdown} onScrollSelect={onScrollSelect} />
+    </div>
   );
 };
 

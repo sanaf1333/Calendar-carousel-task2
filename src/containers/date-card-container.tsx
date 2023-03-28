@@ -41,6 +41,7 @@ const DateCardContainer: React.FC<Props> = ({ month, date, day, year, onClick, o
   }
   const isHoliday = holiday?.some(h => h.date === date && h.month === month && h.year === year);
   function handleCardClick(index: number) {
+    console.log("card clicked");
     if (!isHoliday) {
       onClickNavbarDate(`${month} ${date}, ${year}`);
       onClick(index);

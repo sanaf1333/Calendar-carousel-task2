@@ -48,7 +48,7 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = ho
     function handleSetEndIndex(value: number) {
         setEndIndex(value);
     }
-    let calendarDays: { month: string; date: string; day: string; year: number }[] = [];
+    let calendarDays: { month: string; date: string; day: string; year: number }[] = [];//type separate
     calendarDays = calculateMonth();
     const [months, setMonths] = useState(calendarDays);
     function updateMonths(months: []) {
@@ -71,7 +71,9 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = ho
 
     return (
         <>
+            <div data-testid="calendar-carousel">
             <CalendarCarouselWrapper cardStyle={mergedCardStyle} cardsInRow={cardsInRow} holiday={holiday} selectedDate={selectedDate} months={months} updateMonths={updateMonths} handleDropdownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} />
+            </div>
         </>
     );
 };

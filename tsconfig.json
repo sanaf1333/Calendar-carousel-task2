@@ -16,14 +16,22 @@
         "data/*": ["data/*"],
         "helpers/*": ["helpers/*"],
         "hooks/*": ["hooks/*"]
-        }
+        },
+        "typeRoots": [
+            "./node_modules/@types",
+            "./src/types"
+          ]
     },
     "types": [
         "react",
         "react-dom",
-        "antd"
+        "antd",
+        "node",
+        "jest",
+        "@types/testing-library__jest-dom"
       ],
     "include": [
-        "src"
+        "src",
+        "./jest-setup.ts"
     ]
 }

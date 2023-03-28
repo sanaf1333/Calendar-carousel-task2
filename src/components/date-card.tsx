@@ -37,6 +37,7 @@ const DateCard: React.FC<Props> = ({ month, date, day, index, selectedDate, isHo
         <Space style={{ margin: '0 10px' }}>
 
             <Card
+                data-testid="date-card"
                 type="inner"
                 title={month}
                 bordered={false}

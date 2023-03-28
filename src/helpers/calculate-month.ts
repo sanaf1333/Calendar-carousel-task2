@@ -1,4 +1,4 @@
-export function calculateMonth() {
+export function calculateMonth() {//return type //directly infer return type
     let today: Date = new Date();
     const year = today.getFullYear();
     const daysInMonth: number = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
