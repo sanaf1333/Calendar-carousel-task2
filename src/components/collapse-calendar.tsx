@@ -3,7 +3,6 @@ import { Collapse, Layout } from 'antd';
 import Navbar from './navbar';
 const { Panel } = Collapse;
 import AddEvent from './add-event';
-import { holidays } from '@/data/holidays';
 import CardCarousel from './card-carousel';
 
 interface DisabledDates {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { holidays } from "@/data/holidays";
+import { defaultDisabledDates } from "@/data/disabled-dates";
 import { calculateMonth } from "@/helpers/calculate-month";
 import CollapsedCalendar from "@/components/collapse-calendar";
 interface DisabledDates {
@@ -35,7 +35,7 @@ interface Props {
     disabledDates?: DisabledDates[];
 }
 
-const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDates = holidays }) => {
+const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDates = defaultDisabledDates }) => {
     const mergedCardStyle = {
         ...defaultProps,
         ...cardStyle,
