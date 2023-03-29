@@ -1,6 +1,6 @@
 import { formatMonth } from "./format-date";
 
-export function calculateMonth():{ month: string; date: string; day: string; year: number }[] {
+export function calculateMonth(): { month: string; date: string; day: string; year: number }[] {
     let today: Date = new Date();
     const year = today.getFullYear();
     const daysInMonth: number = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();

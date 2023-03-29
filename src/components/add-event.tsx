@@ -41,7 +41,7 @@ const AddEvent: React.FC<Props> = ({ month, date, year, availableTimeSlots = def
         <Col style={{ backgroundColor: "white", height: "200px" }}>
             <Row style={{ marginBottom: token.marginLG }}>
                 <Col span={4} offset={8} >
-                    <Text strong style={{fontSize: token.fontSizeLG}}>Time:</Text>
+                    <Text strong style={{ fontSize: token.fontSizeLG }}>Time:</Text>
                 </Col>
                 <Col span={4} style={{ textAlign: "end" }}>
                     <Select
@@ -56,7 +56,7 @@ const AddEvent: React.FC<Props> = ({ month, date, year, availableTimeSlots = def
             </Row>
             <Row style={{ marginBottom: token.marginLG }}>
                 <Col span={4} offset={8}>
-                    <Text strong style={{fontSize: token.fontSizeLG}}>Duration</Text>
+                    <Text strong style={{ fontSize: token.fontSizeLG }}>Duration</Text>
                 </Col>
                 <Col span={4} style={{ textAlign: "end" }}>
                     <Space>
