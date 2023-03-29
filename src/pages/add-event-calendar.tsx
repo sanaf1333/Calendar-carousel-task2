@@ -1,8 +1,8 @@
 import React from "react";
-import CalendarCarousel from "@/components/calendar-carousel";
+import EventCalendarCarousel from "@/components/event-calendar-carousel";
 const AddEventCalendar: React.FC = () => {
   return (
-    <CalendarCarousel />
+    <EventCalendarCarousel />
   );
 };
 

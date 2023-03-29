@@ -2,23 +2,10 @@ import { useState } from "react";
 import { defaultDisabledDates } from "@/data/disabled-dates";
 import { calculateMonth } from "@/helpers/calculate-month";
 import CollapsedCalendar from "@/components/collapse-calendar";
-interface DisabledDates {
-    name: string;
-    date: string;
-    month: string;
-    year: number;
-}
-
-interface dateCardProps {
-    headerColor?: string;
-    monthColor?: string;
-    dayColor?: string;
-    dateColor?: string;
-    cardBackgroundColor?: string;
-    cardWidth?: number;
-    disabledColor?: string;
-    selectedBorder?: string;
-}
+import { APIProps } from "@/interfaces/API-props";
+import { dateCardProps } from "@/interfaces/date-card-props-interface";
+import { defaultTimeOptions } from "@/data/time-options";
+import AddEvent from "./add-event";
 const defaultProps: dateCardProps = {
     headerColor: '#eb4c34',
     monthColor: 'white',
@@ -29,18 +16,14 @@ const defaultProps: dateCardProps = {
     disabledColor: 'gray',
     selectedBorder: '1px solid gray',
 };
-interface Props {
-    cardStyle?: dateCardProps;
-    cardsInRow?: number;
-    disabledDates?: DisabledDates[];
-}
 
-const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDates = defaultDisabledDates }) => {
+
+const EventCalendarCarousel: React.FC<APIProps> = ({ cardStyle, cardsInRow, disabledDates = defaultDisabledDates, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
     const mergedCardStyle = {
         ...defaultProps,
         ...cardStyle,
     };
-    
+
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(2);
     function handleSetStartIndex(value: number) {
@@ -49,7 +32,7 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDate
     function handleSetEndIndex(value: number) {
         setEndIndex(value);
     }
-    let calendarDays: { month: string; date: string; day: string; year: number }[] = [];//type separate
+    let calendarDays: { month: string; date: string; day: string; year: number }[] = [];
     calendarDays = calculateMonth();
     const [months, setMonths] = useState(calendarDays);
     function updateMonths(months: []) {
@@ -59,14 +42,15 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDate
     function handleNavbarDateValue(value: string) {
         setSelectedDate(value);
     }
-    
+
     return (
         <>
-            <div data-testid="calendar-carousel">      
-            <CollapsedCalendar cardStyle={mergedCardStyle} cardsInRow={cardsInRow} disabledDates={disabledDates} selectedDate={selectedDate} months={months} updateMonths={updateMonths} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} />
+            <div data-testid="calendar-carousel">
+                <CollapsedCalendar cardStyle={mergedCardStyle} cardsInRow={cardsInRow} disabledDates={disabledDates} selectedDate={selectedDate} months={months} updateMonths={updateMonths} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} availableTimeSlots={availableTimeSlots} />
+                <AddEvent onClickAddEvent={onClickAddEvent} />
             </div>
         </>
     );
 };
 
-export default CalendarCarousel;
+export default EventCalendarCarousel;

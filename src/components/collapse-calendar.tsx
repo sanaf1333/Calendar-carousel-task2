@@ -1,36 +1,11 @@
 import React from 'react';
 import { Collapse, Layout } from 'antd';
-import Navbar from './navbar';
+import CollapseHeader from './collapse-header';
 const { Panel } = Collapse;
-import AddEvent from './add-event';
 import CardCarousel from './card-carousel';
+import { DisabledDates } from '@/interfaces/disabled-dates-interface';
+import { dateCardProps } from "@/interfaces/date-card-props-interface";
 
-interface DisabledDates {
-    name: string;
-    date: string;
-    month: string;
-    year: number;
-}
-interface dateCardProps {
-    headerColor?: string;
-    monthColor?: string;
-    dayColor?: string;
-    dateColor?: string;
-    cardBackgroundColor?: string;
-    cardWidth?: number;
-    disabledColor?: string;
-    selectedBorder?: string;
-}
-const defaultProps: dateCardProps = {
-    headerColor: '#eb4c34',
-    monthColor: 'white',
-    dayColor: 'gray',
-    dateColor: 'gray',
-    cardBackgroundColor: 'white',
-    cardWidth: 150,
-    disabledColor: 'gray',
-    selectedBorder: '1px solid gray',
-};
 interface Props {
     selectedDate: string;
     cardStyle?: dateCardProps;
@@ -43,16 +18,18 @@ interface Props {
     endIndex: number;
     handleSetEndIndex: (value: number) => void;
     handleNavbarDateValue: (value: string) => void;
-  }
-const CollapsedCalendar: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDates, selectedDate, months, updateMonths, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, handleNavbarDateValue }) => (
+    availableTimeSlots: { value: string, label: string }[];
+
+}
+const CollapsedCalendar: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDates, selectedDate, months, updateMonths, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, handleNavbarDateValue, availableTimeSlots }) => (
     <div>
-    <Collapse ghost>
-      <Panel header={<Navbar selectedDate={selectedDate} />} key="1" showArrow={false} >
-        <CardCarousel onClickNavbarDate={handleNavbarDateValue} disabledDates={disabledDates} months={months} updateMonths={updateMonths} selectedDate={selectedDate} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} cardStyle={cardStyle} cardsInRow={cardsInRow} />
-      </Panel>
-    </Collapse>
-    <AddEvent/>
+        <Collapse ghost>
+            <Panel header={<CollapseHeader selectedDate={selectedDate} />} key="1" showArrow={false} >
+                <CardCarousel onClickNavbarDate={handleNavbarDateValue} disabledDates={disabledDates} months={months} updateMonths={updateMonths} selectedDate={selectedDate} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} cardStyle={cardStyle} cardsInRow={cardsInRow} />
+            </Panel>
+        </Collapse>
+
     </div>
-  );
-  
-  export default CollapsedCalendar;
+);
+
+export default CollapsedCalendar;

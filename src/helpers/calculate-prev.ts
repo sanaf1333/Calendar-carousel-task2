@@ -1,4 +1,4 @@
-export function calculatePrevMonth(month: string, year: number) {
+export function calculatePrevMonth(month: string, year: number): { month: string; date: string; day: string; year: number }[] {
     const nextMonthDate: Date = new Date(`${year}-${month}-01`);
 
     nextMonthDate.setMonth(nextMonthDate.getMonth() - 1);
