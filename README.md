@@ -1,11 +1,11 @@
-# Calendar-Carousel
+# Add Event Calendar
 
 ![calendar-carousel-API](https://dev-portal.carbonteq.com/assets/images/calendar-1cfb9243f6a61a44033ca1b28524889d.gif)
 
 ## API
-> <CalendarCarousel />
+> <AddEventCalendar />
 
-## CalendarCarousel Props
+## AddEventCalendar Props
 
 | Property          | Type                                                               | Default            | Description                                                       | 
 |-------------------|--------------------------------------------------------------------|--------------------|-------------------------------------------------------------------|
@@ -16,7 +16,7 @@
 | availableTimeSlots| {value: string; label: string; disabled: boolean} []               | availableTimeSlots[]| Time slots for the time dropdowm. Time slot can be disabled by setting disable: true} |                 
 
 
-## CalendarCarousel cardStyle
+## AddEventCalendar cardStyle
 
 | Property              | Type     | Default        | Description                                                |
 |-----------------------|----------|----------------|------------------------------------------------------------|
@@ -30,9 +30,9 @@
 | selectedBorder        | string   | 1px solid gray | Border styling when card is selected                       |
 
 ### Usage
-> <CalendarCarousel cardStyle={{headerColor: 'blue'}} />
+> <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
 
-## CalendarCarousel holiday
+## AddEventCalendar disabledDates
 
 Example array:
 | disabledDates default array                                                            |
@@ -46,11 +46,13 @@ Example array:
 |];                                                                                 |
 
 ### Usage 
-> <CalendarCarousel holiday={holidays} />
+> <AddEventCalendar disabledDates={disabledDates} />
 
 ## CalendarCarousel cardsInRow
 
 ### Usage
+> <AddEventCalendar cardsInRow=3 />
+
 
 
 
