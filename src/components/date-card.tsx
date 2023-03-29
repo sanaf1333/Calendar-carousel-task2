@@ -17,13 +17,11 @@ interface Props {
     onClick: (index: number) => void;
     onClickNavbarDate: (value: string) => void;
 }
-
+const today = new Date();
+const monthString: string = formatMonth(today);
 const DateCard: React.FC<Props> = ({ month, date, day, year, index, disabledDates, selectedDate, cardStyle, onClickNavbarDate, onClick }) => {
-    console.log(selectedDate);
-    
-    let dateInput = formatDate(month,date,year);
-    const today = new Date();
-    const monthString: string = formatMonth(today);
+    let dateInput = formatDate(month, date, year);
+
     if (`${monthString} ${today.getDate()}, ${today.getFullYear()}` === dateInput) {
         dateInput = `Today`;
     }

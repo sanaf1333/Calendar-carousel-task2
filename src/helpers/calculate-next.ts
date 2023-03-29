@@ -1,3 +1,5 @@
+import { formatMonth } from "./format-date";
+
 export function calculateNextMonth(month: string, year: number): { month: string; date: string; day: string; year: number }[] {
     const nextMonthDate: Date = new Date(`${year}-${month}-01`);
 
@@ -14,7 +16,7 @@ export function calculateNextMonth(month: string, year: number): { month: string
 
     for (let i = 1; i <= daysInMonth; i++) {
         const day: string = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][((firstDayOfMonth + i - 1) % 7)];
-        const month: string = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(nextMonthDate);
+        const month: string = formatMonth(nextMonthDate);
         calendarDays.push({ month, date: i.toString(), day, year });
     }
 

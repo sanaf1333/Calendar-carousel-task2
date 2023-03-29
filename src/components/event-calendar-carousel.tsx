@@ -17,7 +17,6 @@ const defaultProps: dateCardProps = {
     selectedBorder: '1px solid gray',
 };
 
-
 const EventCalendarCarousel: React.FC<APIProps> = ({ cardStyle, cardsInRow, disabledDates = defaultDisabledDates, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
     const mergedCardStyle = {
         ...defaultProps,
@@ -32,8 +31,7 @@ const EventCalendarCarousel: React.FC<APIProps> = ({ cardStyle, cardsInRow, disa
     function handleSetEndIndex(value: number) {
         setEndIndex(value);
     }
-    let calendarDays: { month: string; date: string; day: string; year: number }[] = [];
-    calendarDays = calculateMonth();
+    let calendarDays = calculateMonth();
     const [months, setMonths] = useState(calendarDays);
     function updateMonths(months: []) {
         setMonths(months);

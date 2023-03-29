@@ -40,7 +40,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
     return (
         <>
 
-            <Layout style={{ backgroundColor: "white" }}>
+            <Layout style={{ backgroundColor: "white", marginBottom: "20px" }}>
                 <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }}>
                     <Button onClick={handlePrev}>
                         {'<'}

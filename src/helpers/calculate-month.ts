@@ -1,3 +1,5 @@
+import { formatMonth } from "./format-date";
+
 export function calculateMonth():{ month: string; date: string; day: string; year: number }[] {
     let today: Date = new Date();
     const year = today.getFullYear();
@@ -7,7 +9,7 @@ export function calculateMonth():{ month: string; date: string; day: string; yea
 
     for (let i = 1; i <= daysInMonth; i++) {
         const day: string = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][((firstDayOfMonth + i - 1) % 7)];
-        const month: string = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(today);
+        const month: string = formatMonth(today);
         calendarDays.push({ month, date: i.toString(), day, year });
     }
 

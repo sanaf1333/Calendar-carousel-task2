@@ -1,17 +1,17 @@
-import { Select, Typography, Col, Row, theme } from "antd";
-const { Title } = Typography;
+import { Typography, Col, Row, theme } from "antd";
+const { Text } = Typography;
 import { DownOutlined } from '@ant-design/icons';
-import { formatDate, formatMonth } from "@/helpers/format-date";
+import { formatMonth } from "@/helpers/format-date";
 
 interface Props {
   selectedDate: string;
 }
 const { useToken } = theme;
-
+const today = new Date();
+const monthString: string = formatMonth(today);
 const CollapseHeader: React.FC<Props> = ({ selectedDate }) => {
   const { token } = useToken();
-  const today = new Date();
-  const monthString: string = formatMonth(today);
+
   if (`${monthString} ${today.getDate()}, ${today.getFullYear()}` === selectedDate) {
     selectedDate = `Today`;
   }
@@ -19,14 +19,14 @@ const CollapseHeader: React.FC<Props> = ({ selectedDate }) => {
     <div data-testid="navbar-options">
       <Row style={{ marginBottom: token.marginLG }}>
         <Col span={4} offset={8}>
-          <Title level={5}>
+          <Text strong style={{fontSize: token.fontSizeLG}}>
             Date
-          </Title>
+          </Text>
         </Col>
         <Col span={4} style={{ textAlign: "end" }}>
-          <Title level={5}>
+          <Text strong style={{fontSize: token.fontSizeLG}}>
             {selectedDate}  {<DownOutlined style={{ color: token.colorPrimary }} />}
-          </Title>
+          </Text>
         </Col>
 
       </Row>
