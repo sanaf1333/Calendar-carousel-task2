@@ -2,41 +2,44 @@ import { Card, Space, Typography } from 'antd';
 import React from 'react';
 const { Meta } = Card;
 const { Title } = Typography;
-interface Holiday {
-    name: string;
-    date: string;
-    month: string;
-    year: number;
-}
-interface dateCardProps {
-    headerColor?: string;
-    monthColor?: string;
-    dayColor?: string;
-    dateColor?: string;
-    cardBackgroundColor?: string;
-    cardWidth?: number;
-    disabledColor?: string;
-    selectedBorder?: string;
-}
+import { DisabledDates } from '@/interfaces/disabled-dates-interface';
+import { dateCardProps } from "@/interfaces/date-card-props-interface";
+import { formatDate, formatMonth } from '@/helpers/format-date';
 interface Props {
     month: string;
     date: string;
     day: string;
+    year: number;
     index: number;
-    holiday?: Holiday[];
+    disabledDates?: DisabledDates[];
     selectedDate: string;
-    isHoliday: boolean | undefined;
-    dateInput: string;
-    handleCardClick: (index: number) => void;
     cardStyle?: dateCardProps;
+    onClick: (index: number) => void;
+    onClickNavbarDate: (value: string) => void;
 }
+const today = new Date();
+const monthString: string = formatMonth(today);
+const DateCard: React.FC<Props> = ({ month, date, day, year, index, disabledDates, selectedDate, cardStyle, onClickNavbarDate, onClick }) => {
+    let dateInput = formatDate(month, date, year);
 
-const DateCard: React.FC<Props> = ({ month, date, day, index, selectedDate, isHoliday, dateInput, handleCardClick, cardStyle }) => {
-
+    if (`${monthString} ${today.getDate()}, ${today.getFullYear()}` === dateInput) {
+        dateInput = `Today`;
+    }
+    if (`${monthString} ${today.getDate()}, ${today.getFullYear()}` === selectedDate) {
+        selectedDate = `Today`;
+    }
+    const isHoliday = disabledDates?.some(h => h.date === date && h.month === month && h.year === year);
+    function handleCardClick(index: number) {
+        if (!isHoliday) {
+            onClickNavbarDate(`${month} ${date}, ${year}`);
+            onClick(index);
+        }
+    }
     return (
         <Space style={{ margin: '0 10px' }}>
 
             <Card
+                data-testid="date-card"
                 type="inner"
                 title={month}
                 bordered={false}

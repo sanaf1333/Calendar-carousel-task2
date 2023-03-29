@@ -9,10 +9,6 @@ interface UseCarouselProps {
   handleSetEndIndex: (value: number) => void;
   months: any[];
   updateMonths: (updatedMonths: any[]) => void;
-  selectedDropdown: string;
-  dropdownChanged: boolean;
-  handleSetDropdownChanged: (value: boolean) => void;
-  onClickNavbarDate: (value: string) => void;
   cardsInRow?: number;
 }
 
@@ -23,10 +19,6 @@ const useCarousel = ({
   handleSetEndIndex,
   months,
   updateMonths,
-  selectedDropdown,
-  dropdownChanged,
-  handleSetDropdownChanged,
-  onClickNavbarDate,
   cardsInRow = 3,
 }: UseCarouselProps) => {
 
@@ -80,15 +72,6 @@ const useCarousel = ({
     handleSetEndIndex(newEndIndex);
   };
 
-  useEffect(() => {
-    if (dropdownChanged) {
-      let newStartIndex = searchDropdownDate(months, selectedDropdown);
-      handleSetStartIndex(newStartIndex);
-      handleSetEndIndex(newStartIndex + cardsInRow - 1);
-      handleSetDropdownChanged(false);
-      onClickNavbarDate(selectedDropdown);
-    }
-  }, [dropdownChanged]);
   return {
     handleNext,
     handlePrev,
