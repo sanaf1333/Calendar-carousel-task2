@@ -7,11 +7,12 @@
 
 ## CalendarCarousel Props
 
-| Property    | Type                                                               | Default      | Description                                                       | 
-|-------------|--------------------------------------------------------------------|--------------|-------------------------------------------------------------------|
-| cardStyle   | interface                                                          |              | It includes various props for the styling of card                 |
-| cardsInRow  | number                                                             | 3            | Number of cards you want to show in a row                         |
-| holiday     | { date: string; month: string; year: number; name: string }[]      | holiday[]    | Any holidays or disabled dates that you want to add. Events cannot be added on disabled dates|                                                                                                       
+| Property          | Type                                                               | Default            | Description                                                       | 
+|-------------------|--------------------------------------------------------------------|--------------------|-------------------------------------------------------------------|
+| cardStyle         | interface                                                          |                    | It includes various props for the styling of card                 |
+| cardsInRow        | number                                                             | 3                  | Number of cards you want to show in a row                         |
+| disabledDates     | { date: string; month: string; year: number; name: string }[]      | DisabledDates[]    | Any holidays or disabled dates that you want to add. Events cannot be added on disabled dates|       
+| onClickAddEvent   |  () => void                                                        |                    | Returns event date, month, year, time, duration                   |
 
 
 ## CalendarCarousel cardStyle
@@ -33,7 +34,7 @@
 ## CalendarCarousel holiday
 
 Example array:
-| Holidays default array                                                            |
+| disabledDates default array                                                            |
 |-----------------------------------------------------------------------------------|
 |export const holiday: {date:string; month: string; year: number; name: string}[]=[ |
 |   { date: "1", month: "January", year: 2023, name: "New Year's Day" },            |
