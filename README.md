@@ -13,6 +13,7 @@
 | cardsInRow        | number                                                             | 3                  | Number of cards you want to show in a row                         |
 | disabledDates     | { date: string; month: string; year: number; name: string }[]      | DisabledDates[]    | Any holidays or disabled dates that you want to add. Events cannot be added on disabled dates|       
 | onClickAddEvent   |  () => void                                                        |                    | Returns event date, month, year, time, duration                   |
+| availableTimeSlots| {value: string; label: string; disabled: boolean} []               | availableTimeSlots[]| Time slots for the time dropdowm. Time slot can be disabled by setting disable: true} |                 
 
 
 ## CalendarCarousel cardStyle
