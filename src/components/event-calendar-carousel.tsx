@@ -29,7 +29,8 @@ const EventCalendarCarousel: React.FC<APIProps> = ({ cardStyle, cardsInRow, disa
     function handleNavbarDateValue(value: string) {
         setSelectedDate(value);
     }
-    onClickAddEvent = (event: {time: string, duration: number, selectedDate: string }) =>{
+    onClickAddEvent = (event: {time: string, formattedDuration: string, selectedDate: string }) =>{
+        console.log(event);
         return event;
     }
     return (

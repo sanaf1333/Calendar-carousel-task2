@@ -8,7 +8,7 @@ const { useToken } = theme;
 interface Props {
     selectedDate: string;
     availableTimeSlots?: { value: string; label: string; disabled?: boolean }[];
-    onClickAddEvent?: (event: {time: string, duration: number, selectedDate: string}) => void;
+    onClickAddEvent?: (event: {time: string, formattedDuration: string, selectedDate: string}) => void;
 }
 
 const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
@@ -34,7 +34,8 @@ const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultT
     }
     
     const handleAddEvent = () => {
-        const event = {time, duration, selectedDate};
+        const formattedDuration=formatDuration(duration);
+        const event = {time, formattedDuration , selectedDate};
         onClickAddEvent && onClickAddEvent(event);
     }
     return (

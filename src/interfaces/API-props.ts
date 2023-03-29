@@ -5,5 +5,5 @@ export interface APIProps {
     cardsInRow?: number;
     disabledDates?: DisabledDates[];
     availableTimeSlots?: { value: string, label: string }[];
-    onClickAddEvent?: (event: {time: string, duration: number, selectedDate: string }) => void;
+    onClickAddEvent?: (event: {time: string, formattedDuration: string, selectedDate: string }) => void;
 }
