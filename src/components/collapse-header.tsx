@@ -1,8 +1,7 @@
 import { Typography, Col, Row, theme } from "antd";
-const { Text } = Typography;
 import { DownOutlined } from '@ant-design/icons';
 import { formatMonth } from "@/helpers/format-date";
-
+const { Text } = Typography;
 interface Props {
   selectedDate: string;
 }

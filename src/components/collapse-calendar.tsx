@@ -1,11 +1,10 @@
 import React from 'react';
-import { Collapse, Layout } from 'antd';
+import { Collapse } from 'antd';
 import CollapseHeader from './collapse-header';
-const { Panel } = Collapse;
 import CardCarousel from './card-carousel';
 import { DisabledDates } from '@/interfaces/disabled-dates-interface';
 import { dateCardProps } from "@/interfaces/date-card-props-interface";
-
+const { Panel } = Collapse;
 interface Props {
     selectedDate: string;
     cardStyle?: dateCardProps;

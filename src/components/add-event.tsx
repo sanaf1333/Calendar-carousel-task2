@@ -6,14 +6,12 @@ const { Text } = Typography;
 const { useToken } = theme;
 
 interface Props {
-    month?: string;
-    date?: string;
-    year?: number;
+    selectedDate: string;
     availableTimeSlots?: { value: string; label: string; disabled?: boolean }[];
-    onClickAddEvent?: () => void;
+    onClickAddEvent?: (event: {time: string, duration: number, selectedDate: string}) => void;
 }
 
-const AddEvent: React.FC<Props> = ({ month, date, year, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
+const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
 
     const [duration, setDuration] = useState(0);
     const [time, setTime] = useState(availableTimeSlots[0].value);
@@ -34,17 +32,20 @@ const AddEvent: React.FC<Props> = ({ month, date, year, availableTimeSlots = def
         console.log(e);
         setTime(e);
     }
-    onClickAddEvent = () => {
-        return [date, month, year, time, duration];
+    
+    const handleAddEvent = () => {
+        const event = {time, duration, selectedDate};
+        onClickAddEvent && onClickAddEvent(event);
     }
     return (
-        <Col style={{ backgroundColor: "white", height: "200px" }}>
+        <Col style={{ backgroundColor: "white", height: "200px" }} >
             <Row style={{ marginBottom: token.marginLG }}>
                 <Col span={4} offset={8} >
                     <Text strong style={{ fontSize: token.fontSizeLG }}>Time:</Text>
                 </Col>
                 <Col span={4} style={{ textAlign: "end" }}>
                     <Select
+                        data-testid="add-event"
                         defaultValue={availableTimeSlots[0].value}
                         style={{ width: 120 }}
                         options={availableTimeSlots}
@@ -72,7 +73,7 @@ const AddEvent: React.FC<Props> = ({ month, date, year, availableTimeSlots = def
             </Row>
             <Row style={{ marginBottom: token.marginLG }}>
                 <Col span={8} offset={12}>
-                    <Button onClick={onClickAddEvent}>OK</Button>
+                    <Button onClick={handleAddEvent}>OK</Button>
                 </Col>
             </Row>
         </Col>

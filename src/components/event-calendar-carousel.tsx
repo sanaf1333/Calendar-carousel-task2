@@ -40,12 +40,14 @@ const EventCalendarCarousel: React.FC<APIProps> = ({ cardStyle, cardsInRow, disa
     function handleNavbarDateValue(value: string) {
         setSelectedDate(value);
     }
-
+    onClickAddEvent = (event: {time: string, duration: number, selectedDate: string }) =>{
+        return event;
+    }
     return (
         <>
             <div data-testid="calendar-carousel">
                 <CollapsedCalendar cardStyle={mergedCardStyle} cardsInRow={cardsInRow} disabledDates={disabledDates} selectedDate={selectedDate} months={months} updateMonths={updateMonths} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} availableTimeSlots={availableTimeSlots} />
-                <AddEvent onClickAddEvent={onClickAddEvent} />
+                <AddEvent onClickAddEvent={onClickAddEvent} selectedDate={selectedDate} />
             </div>
         </>
     );
