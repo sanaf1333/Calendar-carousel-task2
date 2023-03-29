@@ -1,50 +1,33 @@
-import { Select, Typography, Col, Row } from "antd";
+import { Select, Typography, Col, Row, theme } from "antd";
 const { Title } = Typography;
-
-interface Option {
-  value: string;
-  label: string;
-  key?: string;
-}
+import { DownOutlined } from '@ant-design/icons';
 
 interface Props {
-  options: Option[];
-  selectedOption: string;
-  onChangeDropdown: (value: string) => void;
-  onScrollSelect: (event: React.UIEvent<HTMLDivElement>) => void;
+  selectedDate: string;
 }
-
-const Navbar: React.FC<Props> = ({ options, selectedOption, onChangeDropdown, onScrollSelect }) => {
-  console.log(options);
-  const modifiedOptions = options.map((option: Option, index: number) => ({ ...option, key: `${option.value}-${index}` }));
-  console.log(modifiedOptions);
+const { useToken } = theme;
+//if selected date = todays date, show today
+const Navbar: React.FC<Props> = ({ selectedDate }) => {
+  const { token } = useToken();
+  const today = new Date();
+  const monthString: string = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(today);
+  if(`${monthString} ${today.getDate()}, ${today.getFullYear()}` === selectedDate){
+    selectedDate=`Today`;
+  }
   return (
     <div data-testid="navbar-options">
-      <Row justify="center" style={{marginBottom: 50}} gutter={300}>
-        <Col>
-          <Title level={5} style={{  margin: 0 }}>
+      <Row style={{ marginBottom: "16px" }}>
+        <Col span={4} offset={8}>
+          <Title level={5}>
             Date
           </Title>
         </Col>
-        <Col>
-        <Select
-          data-testid="navbar-select"
-          value={selectedOption}
-          style={{ float:"right",  margin: 0, width: 150, backgroundColor: "white", color: "black" }}
-          options={modifiedOptions}
-          bordered={false}
-          onChange={(value, option) => { onChangeDropdown((option as Option).value) }}
-          onPopupScroll={onScrollSelect}
-        >
-          {modifiedOptions.map((option) => (
-            <Select.Option key={option.key} data-value={option.value} data-testid={option.key} >
-            {option.label}
-          </Select.Option>
-          
-          ))}
-        </Select>
-
+        <Col span={4} style={{textAlign: "end"}}>
+          <Title level={5}>
+            {selectedDate}  {<DownOutlined style={{ color: token.colorPrimary}} />}   
+          </Title>
         </Col>
+       
       </Row>
     </div>
   );

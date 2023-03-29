@@ -1,12 +1,9 @@
-import { Component } from "react";
-import CalendarCarousel from "@/pages/calendar-carousel-container";
-
-class App extends Component {//class //functional
-    render() {
-        return (
-            <CalendarCarousel />
-        );
-    }
-}
+import React from "react";
+import AddEventCalendar from "./pages/add-event-calendar";
+const App: React.FC = () => {
+  return (
+    <AddEventCalendar />
+  );
+};
 
 export default App;

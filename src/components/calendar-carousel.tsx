@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { holidays } from "@/data/holidays";
 import { calculateMonth } from "@/helpers/calculate-month";
-import CalendarCarouselWrapper from "./calendar-carousel-API";
-interface Holiday {
+import CollapsedCalendar from "@/components/collapse-calendar";
+interface DisabledDates {
     name: string;
     date: string;
     month: string;
@@ -32,14 +32,15 @@ const defaultProps: dateCardProps = {
 interface Props {
     cardStyle?: dateCardProps;
     cardsInRow?: number;
-    holiday?: Holiday[];
+    disabledDates?: DisabledDates[];
 }
 
-const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = holidays }) => {
+const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDates = holidays }) => {
     const mergedCardStyle = {
         ...defaultProps,
         ...cardStyle,
     };
+    
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(2);
     function handleSetStartIndex(value: number) {
@@ -58,21 +59,11 @@ const CalendarCarousel: React.FC<Props> = ({ cardStyle, cardsInRow, holiday = ho
     function handleNavbarDateValue(value: string) {
         setSelectedDate(value);
     }
-    const [selectedDropdown, setSelectedDropdown] = useState<string>("Today");
-    const [dropdownChanged, setDropdownChanged] = useState(false);
-    function handleSetDropdownChanged(value: boolean) {
-        setDropdownChanged(value);
-    }
-    function handleDropdownChange(value: string) {
-        setSelectedDropdown(value);
-        console.log(selectedDropdown);
-        handleSetDropdownChanged(true);
-    }
-
+    
     return (
         <>
-            <div data-testid="calendar-carousel">
-            <CalendarCarouselWrapper cardStyle={mergedCardStyle} cardsInRow={cardsInRow} holiday={holiday} selectedDate={selectedDate} months={months} updateMonths={updateMonths} handleDropdownChange={handleDropdownChange} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} selectedDropdown={selectedDropdown} dropdownChanged={dropdownChanged} handleSetDropdownChanged={handleSetDropdownChanged} />
+            <div data-testid="calendar-carousel">      
+            <CollapsedCalendar cardStyle={mergedCardStyle} cardsInRow={cardsInRow} disabledDates={disabledDates} selectedDate={selectedDate} months={months} updateMonths={updateMonths} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} />
             </div>
         </>
     );
