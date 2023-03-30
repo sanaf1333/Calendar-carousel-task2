@@ -39,7 +39,7 @@ const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultT
         onClickAddEvent && onClickAddEvent(event);
     }
     return (
-        <Col style={{ backgroundColor: "white", height: "200px" }} >
+        <Col style={{ backgroundColor: "white", height: "200px" }} data-testid="add-event-component" >
             <Row style={{ marginBottom: token.marginLG }}>
                 <Col span={4} offset={8} >
                     <Text strong style={{ fontSize: token.fontSizeLG }}>Time:</Text>
