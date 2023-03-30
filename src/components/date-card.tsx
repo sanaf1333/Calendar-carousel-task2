@@ -1,10 +1,10 @@
-import { Card, Space, Typography } from 'antd';
 import React from 'react';
-const { Meta } = Card;
-const { Title } = Typography;
+import { Card, Space, Typography } from 'antd';
 import { DisabledDates } from '@/interfaces/disabled-dates-interface';
 import { dateCardProps } from "@/interfaces/date-card-props-interface";
 import { formatDate, formatMonth } from '@/helpers/format-date';
+const { Meta } = Card;
+const { Title } = Typography;
 interface Props {
     month: string;
     date: string;
@@ -29,6 +29,7 @@ const DateCard: React.FC<Props> = ({ month, date, day, year, index, disabledDate
         selectedDate = `Today`;
     }
     const isHoliday = disabledDates?.some(h => h.date === date && h.month === month && h.year === year);
+
     function handleCardClick(index: number) {
         if (!isHoliday) {
             onClickNavbarDate(`${month} ${date}, ${year}`);

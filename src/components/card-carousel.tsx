@@ -40,7 +40,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
     return (
         <>
 
-            <Layout style={{ backgroundColor: "white", marginBottom: "20px" }}>
+            <Layout style={{ backgroundColor: "white", marginBottom: "20px" }} data-testid="card-carousel">
                 <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }}>
                     <Button onClick={handlePrev}>
                         {'<'}
@@ -57,6 +57,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
                                 disabledDates={disabledDates}
                                 selectedDate={selectedDate}
                                 cardStyle={cardStyle}
+                                data-testid="date-card"
                             />
 
                         ))}

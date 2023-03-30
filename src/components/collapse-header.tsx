@@ -1,8 +1,7 @@
 import { Typography, Col, Row, theme } from "antd";
-const { Text } = Typography;
 import { DownOutlined } from '@ant-design/icons';
 import { formatMonth } from "@/helpers/format-date";
-
+const { Text } = Typography;
 interface Props {
   selectedDate: string;
 }
@@ -19,12 +18,12 @@ const CollapseHeader: React.FC<Props> = ({ selectedDate }) => {
     <div data-testid="navbar-options">
       <Row style={{ marginBottom: token.marginLG }}>
         <Col span={4} offset={8}>
-          <Text strong style={{fontSize: token.fontSizeLG}}>
+          <Text strong style={{ fontSize: token.fontSizeLG }}>
             Date
           </Text>
         </Col>
         <Col span={4} style={{ textAlign: "end" }}>
-          <Text strong style={{fontSize: token.fontSizeLG}}>
+          <Text strong style={{ fontSize: token.fontSizeLG }}>
             {selectedDate}  {<DownOutlined style={{ color: token.colorPrimary }} />}
           </Text>
         </Col>
