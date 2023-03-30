@@ -3,16 +3,16 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import DateCard from '../src/components/date-card';
 import { dateCardProps } from '../src/interfaces/date-card-props-interface';
-import {defaultDisabledDates} from '../src/data/disabled-dates';
+import { defaultDisabledDates } from '../src/data/disabled-dates';
 export const defaultProps: dateCardProps = {
-    headerColor: '#eb4c34',
-    monthColor: 'white',
-    dayColor: 'gray',
-    dateColor: 'gray',
-    cardBackgroundColor: 'white',
-    cardWidth: 150,
-    disabledColor: 'gray',
-    selectedBorder: '1px solid gray',
+  headerColor: '#eb4c34',
+  monthColor: 'white',
+  dayColor: 'gray',
+  dateColor: 'gray',
+  cardBackgroundColor: 'white',
+  cardWidth: 150,
+  disabledColor: 'gray',
+  selectedBorder: '1px solid gray',
 };
 const mockedProps = {
   month: 'January',
@@ -51,16 +51,16 @@ describe('DateCard component', () => {
     expect(mockedProps.onClickNavbarDate).toHaveBeenCalledTimes(1);
   });
 
- /* it('disable the card if it is a holiday', () => {
-    const mockedHoliday = { date: '1', month: 'January', year: 2022, name: 'time travel' };
-    const mockedDisabledDates = [mockedHoliday];
-    render(<DateCard {...mockedProps} disabledDates={mockedDisabledDates} />);
-    const dateCard = screen.getByTestId('date-card');
-    fireEvent.click(dateCard);
-    console.log(dateCard);
-    expect(mockedProps.onClick).not.toHaveBeenCalled();
-    expect(mockedProps.onClickNavbarDate).not.toHaveBeenCalled();
-  });*/
+  /* it('disable the card if it is a holiday', () => {
+     const mockedHoliday = { date: '1', month: 'January', year: 2022, name: 'time travel' };
+     const mockedDisabledDates = [mockedHoliday];
+     render(<DateCard {...mockedProps} disabledDates={mockedDisabledDates} />);
+     const dateCard = screen.getByTestId('date-card');
+     fireEvent.click(dateCard);
+     console.log(dateCard);
+     expect(mockedProps.onClick).not.toHaveBeenCalled();
+     expect(mockedProps.onClickNavbarDate).not.toHaveBeenCalled();
+   });*/
 
   it('should render Closed instead of day when isHoliday prop is true', () => {
     const mockedHoliday = { date: '1', month: 'January', year: 2022, name: 'time travel' };

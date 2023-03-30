@@ -48,7 +48,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
 
                     <Layout style={{ display: 'flex', justifyContent: 'center', flexDirection: "row", backgroundColor: "white" }}>
                         {months.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
-                            
+
                             <DateCard key={index} {...calendarDays}
                                 index={index}
                                 onClick={(index: number) => handleCardClick(index)}

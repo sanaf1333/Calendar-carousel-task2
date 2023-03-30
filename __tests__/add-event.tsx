@@ -7,7 +7,7 @@ import '@testing-library/jest-dom'
 describe('AddEvent', () => {
   const mockOnClickAddEvent = jest.fn();
   const testProps = {
-    
+
     selectedDate: " January 4, 2023",
     availableTimeSlots: [
       { value: '10:00', label: '10:00 AM' },
@@ -24,7 +24,7 @@ describe('AddEvent', () => {
     await waitFor(() => {
       expect(timeSelect).toHaveTextContent('12:00');
     });
-    
+
 
     const durationText = screen.getByText('00:00');
     expect(durationText).toBeInTheDocument();
@@ -53,18 +53,18 @@ describe('AddEvent', () => {
     const option = getByText('11:00 AM');
     fireEvent.click(option);
     const selectedValues = await waitFor(() => queryAllByText('11:00 AM'));
-    const selectedValue = selectedValues[selectedValues.length - 1]; 
+    const selectedValue = selectedValues[selectedValues.length - 1];
     expect(selectedValue.textContent).toEqual('11:00 AM');
   });
-  
-  
-  
+
+
+
 
   it('should display the default duration value', () => {
     const { getByTestId } = render(<AddEvent availableTimeSlots={testProps.availableTimeSlots} selectedDate={testProps.selectedDate} />);
     expect(getByTestId('duration-value').textContent).toBe('00:00');
   });
-  
+
   it('should increase the duration value when clicking the plus button', () => {
     const { getByTestId } = render(<AddEvent availableTimeSlots={testProps.availableTimeSlots} selectedDate={testProps.selectedDate} />);
     fireEvent.click(getByTestId('duration-increase'));

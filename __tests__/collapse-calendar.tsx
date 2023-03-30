@@ -1,18 +1,18 @@
 import React from 'react';
-import { render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import CollapsedCalendar from '../src/components/collapse-calendar';
 import { dateCardProps } from '../src/interfaces/date-card-props-interface';
-import {defaultDisabledDates} from '../src/data/disabled-dates';
+import { defaultDisabledDates } from '../src/data/disabled-dates';
 export const defaultProps: dateCardProps = {
-    headerColor: '#eb4c34',
-    monthColor: 'white',
-    dayColor: 'gray',
-    dateColor: 'gray',
-    cardBackgroundColor: 'white',
-    cardWidth: 150,
-    disabledColor: 'gray',
-    selectedBorder: '1px solid gray',
+  headerColor: '#eb4c34',
+  monthColor: 'white',
+  dayColor: 'gray',
+  dateColor: 'gray',
+  cardBackgroundColor: 'white',
+  cardWidth: 150,
+  disabledColor: 'gray',
+  selectedBorder: '1px solid gray',
 };
 describe('CollapsedCalendar component', () => {
   const mockedProps = {
