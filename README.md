@@ -46,11 +46,13 @@ Example array:
 |];                                                                                 |
 
 ### Usage 
+
 > <AddEventCalendar disabledDates={disabledDates} />
 
 ## CalendarCarousel cardsInRow
 
 ### Usage
+
 > <AddEventCalendar cardsInRow=3 />
 
 
