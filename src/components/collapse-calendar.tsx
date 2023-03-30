@@ -24,7 +24,7 @@ const CollapsedCalendar: React.FC<Props> = ({ cardStyle, cardsInRow, disabledDat
     <div>
         <Collapse ghost>
             <Panel header={<CollapseHeader selectedDate={selectedDate} />} key="1" showArrow={false} >
-                <CardCarousel onClickNavbarDate={handleNavbarDateValue} disabledDates={disabledDates} months={months} updateMonths={updateMonths} selectedDate={selectedDate} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} cardStyle={cardStyle} cardsInRow={cardsInRow} />
+                <CardCarousel  onClickNavbarDate={handleNavbarDateValue} disabledDates={disabledDates} months={months} updateMonths={updateMonths} selectedDate={selectedDate} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} cardStyle={cardStyle} cardsInRow={cardsInRow} />
             </Panel>
         </Collapse>
 
