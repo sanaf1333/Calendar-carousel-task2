@@ -56,17 +56,17 @@ const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultT
                     />
                 </Col>
             </Row>
-            <Row style={{ marginBottom: token.marginLG }}>
+            <Row style={{ marginBottom: token.marginLG }} >
                 <Col span={4} offset={8}>
                     <Text strong style={{ fontSize: token.fontSizeLG }}>Duration</Text>
                 </Col>
                 <Col span={4} style={{ textAlign: "end" }}>
                     <Space>
-                        <Button shape="circle" style={{ borderColor: token.colorPrimary, color: token.colorPrimary }} ghost onClick={() => handleDurationChange(-1)}>
+                        <Button shape="circle" style={{ borderColor: token.colorPrimary, color: token.colorPrimary }} ghost onClick={() => handleDurationChange(-1)} data-testid="duration-decrease">
                             -
                         </Button>
-                        <div>{formatDuration(duration)}</div>
-                        <Button shape="circle" style={{ borderColor: token.colorPrimary, color: token.colorPrimary }} ghost onClick={() => handleDurationChange(1)}>
+                        <div data-testid="duration-value">{formatDuration(duration)}</div>
+                        <Button shape="circle" style={{ borderColor: token.colorPrimary, color: token.colorPrimary }} ghost onClick={() => handleDurationChange(1)} data-testid="duration-increase">
                             +
                         </Button>
                     </Space>
@@ -74,7 +74,7 @@ const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultT
             </Row>
             <Row style={{ marginBottom: token.marginLG }}>
                 <Col span={8} offset={12}>
-                    <Button onClick={handleAddEvent}>OK</Button>
+                    <Button onClick={handleAddEvent} data-testid="ok-button">OK</Button>
                 </Col>
             </Row>
         </Col>
