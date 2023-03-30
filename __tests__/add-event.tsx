@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import AddEvent from '../src/components/add-event'
-import { defaultTimeOptions } from "../src/data/time-options";
 import '@testing-library/jest-dom'
 
 

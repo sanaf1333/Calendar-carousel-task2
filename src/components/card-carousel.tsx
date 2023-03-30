@@ -57,6 +57,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
                                 disabledDates={disabledDates}
                                 selectedDate={selectedDate}
                                 cardStyle={cardStyle}
+                                data-testid="date-card"
                             />
 
                         ))}
