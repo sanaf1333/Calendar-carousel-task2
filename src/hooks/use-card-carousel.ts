@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { calculateNextMonth } from '@/helpers/calculate-next';
 import { calculatePrevMonth } from '@/helpers/calculate-prev';
-import { searchDropdownDate } from '@/helpers/search-dropdown-date';
 interface UseCarouselProps {
   startIndex: number;
   endIndex: number;
@@ -31,6 +30,16 @@ const useCarousel = ({
     }
   }, [todayIndex]);
 
+  if(months.length - todayIndex < cardsInRow){
+    console.log(todayIndex-months.length);
+    const nextMonthDays = calculateNextMonth(
+      months[startIndex].month,
+      months[startIndex].year
+    );
+    const newDays = [...months, ...nextMonthDays];
+    updateMonths(newDays);
+    handleSetEndIndex(endIndex + (todayIndex-months.length));
+  }
   const handleNext = () => {
     if (months.length - endIndex <= cardsInRow) {
       const nextMonthDays = calculateNextMonth(

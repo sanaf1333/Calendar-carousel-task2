@@ -9,31 +9,22 @@ interface Props {
     selectedDate: string;
     availableTimeSlots?: { value: string; label: string; disabled?: boolean }[];
     onClickAddEvent?: (event: { time: string, formattedDuration: string, selectedDate: string }) => void;
+    time: string;
+    duration: number;
+    handleTimeChange: (value: string) => void;
+    handleDurationChange: (value: number) => void;
+    formatDuration: (value: number) => string;
+    setTime: (value: string) => void;
+    setDuration: (value: number) => void;
 }
 
-const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
-
-    const [duration, setDuration] = useState(0);
-    const [time, setTime] = useState(availableTimeSlots[0].value);
-    const formatDuration = (duration: number): string => {
-        const minutes = Math.floor(duration / 60);
-        const seconds = duration % 60;
-        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    };
+const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent, time, duration, handleTimeChange, handleDurationChange, formatDuration, setTime, setDuration }) => {
     const { token } = useToken();
-    const handleDurationChange = (amount: number) => {
-        setDuration(prevDuration => {
-            const newDuration = prevDuration + amount * 60;
-            return Math.max(newDuration, 0);
-        });
-    };
-
-    const handleTimeChange = (e: string) => {
-        console.log(e);
-        setTime(e);
-    }
+    
 
     const handleAddEvent = () => {
+        setTime(availableTimeSlots[0].value);
+        setDuration(0);
         const formattedDuration = formatDuration(duration);
         const event = { time, formattedDuration, selectedDate };
         onClickAddEvent && onClickAddEvent(event);
@@ -46,6 +37,7 @@ const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultT
                 </Col>
                 <Col span={4} style={{ textAlign: "end" }}>
                     <Select
+                        value={time}
                         data-testid="add-event"
                         defaultValue={availableTimeSlots[0].value}
                         style={{ width: 120 }}

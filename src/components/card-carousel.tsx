@@ -4,7 +4,8 @@ import DateCard from './date-card';
 import useCarousel from '@/hooks/use-card-carousel';
 import { DisabledDates } from '@/interfaces/disabled-dates-interface';
 import { dateCardProps } from "@/interfaces/date-card-props-interface";
-interface Props {
+import { defaultTimeOptions } from '@/data/time-options';
+interface Props {//typescript utlity type omit
     onClickNavbarDate: (value: string) => void;
     disabledDates?: DisabledDates[];
     months: any[];
@@ -16,12 +17,19 @@ interface Props {
     handleSetEndIndex: (value: number) => void;
     cardsInRow?: number;
     cardStyle?: dateCardProps;
+    handleCollapse: () => void;
+    setTime: (value: string) => void;
+    setDuration: (value: number) => void;
+    availableTimeSlots?: { value: string, label: string, disabled?: boolean }[];
 }
 
-const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, months, updateMonths, selectedDate, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow }) => {
+const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, months, updateMonths, selectedDate, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow, handleCollapse, setTime, setDuration, availableTimeSlots=defaultTimeOptions }) => {
     const [selectedCard, setSelectedCard] = useState(-1);
 
     const handleCardClick = (index: number) => {
+        setTime(availableTimeSlots[0].value);
+        setDuration(0);
+        handleCollapse();
         setSelectedCard(index);
     };
 
@@ -37,6 +45,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
         updateMonths,
         cardsInRow,
     });
+    //!nested layoutx
     return (
         <>
 

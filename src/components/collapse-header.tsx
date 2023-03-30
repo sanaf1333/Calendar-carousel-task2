@@ -4,11 +4,12 @@ import { formatMonth } from "@/helpers/format-date";
 const { Text } = Typography;
 interface Props {
   selectedDate: string;
+  handleCollapse: () => void;
 }
 const { useToken } = theme;
 const today = new Date();
 const monthString: string = formatMonth(today);
-const CollapseHeader: React.FC<Props> = ({ selectedDate }) => {
+const CollapseHeader: React.FC<Props> = ({ selectedDate, handleCollapse }) => {
   const { token } = useToken();
 
   if (`${monthString} ${today.getDate()}, ${today.getFullYear()}` === selectedDate) {
@@ -16,7 +17,7 @@ const CollapseHeader: React.FC<Props> = ({ selectedDate }) => {
   }
   return (
     <div data-testid="navbar-options">
-      <Row style={{ marginBottom: token.marginLG }}>
+      <Row style={{ marginBottom: token.marginLG }} onClick={handleCollapse}>
         <Col span={4} offset={8}>
           <Text strong style={{ fontSize: token.fontSizeLG }}>
             Date

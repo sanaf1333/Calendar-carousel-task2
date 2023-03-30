@@ -51,7 +51,7 @@ describe('DateCard component', () => {
     expect(mockedProps.onClickNavbarDate).toHaveBeenCalledTimes(1);
   });
 
-  /* it('disable the card if it is a holiday', () => {
+     /*it('disable the card if it is a holiday', () => {
      const mockedHoliday = { date: '1', month: 'January', year: 2022, name: 'time travel' };
      const mockedDisabledDates = [mockedHoliday];
      render(<DateCard {...mockedProps} disabledDates={mockedDisabledDates} />);
@@ -59,7 +59,7 @@ describe('DateCard component', () => {
      fireEvent.click(dateCard);
      console.log(dateCard);
      expect(mockedProps.onClick).not.toHaveBeenCalled();
-     expect(mockedProps.onClickNavbarDate).not.toHaveBeenCalled();
+     expect(mockedProps.onClickNavbarDate).not.toHaveBeenCalled();//await async
    });*/
 
   it('should render Closed instead of day when isHoliday prop is true', () => {
