@@ -23,7 +23,7 @@ interface Props {//typescript utlity type omit
     availableTimeSlots?: { value: string, label: string, disabled?: boolean }[];
 }
 
-const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, months, updateMonths, selectedDate, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow, handleCollapse, setTime, setDuration, availableTimeSlots=defaultTimeOptions }) => {
+const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, months, updateMonths, selectedDate, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow, handleCollapse, setTime, setDuration, availableTimeSlots = defaultTimeOptions }) => {
     const [selectedCard, setSelectedCard] = useState(-1);
 
     const handleCardClick = (index: number) => {
@@ -45,40 +45,34 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
         updateMonths,
         cardsInRow,
     });
-    //!nested layoutx
+
     return (
-        <>
+        <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }} data-testid="card-carousel">
+            <Button onClick={handlePrev}>
+                {'<'}
+            </Button>
 
-            <Layout style={{ backgroundColor: "white", marginBottom: "20px" }} data-testid="card-carousel">
-                <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }}>
-                    <Button onClick={handlePrev}>
-                        {'<'}
-                    </Button>
+            <Space style={{ display: 'flex', justifyContent: 'center', flexDirection: "row", backgroundColor: "white" }}>
+                {months.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
 
-                    <Layout style={{ display: 'flex', justifyContent: 'center', flexDirection: "row", backgroundColor: "white" }}>
-                        {months.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
+                    <DateCard key={index} {...calendarDays}
+                        index={index}
+                        onClick={(index: number) => handleCardClick(index)}
+                        onClickNavbarDate={onClickNavbarDate}
+                        selected={selectedCard === index}
+                        disabledDates={disabledDates}
+                        selectedDate={selectedDate}
+                        cardStyle={cardStyle}
+                        data-testid="date-card"
+                    />
 
-                            <DateCard key={index} {...calendarDays}
-                                index={index}
-                                onClick={(index: number) => handleCardClick(index)}
-                                onClickNavbarDate={onClickNavbarDate}
-                                selected={selectedCard === index}
-                                disabledDates={disabledDates}
-                                selectedDate={selectedDate}
-                                cardStyle={cardStyle}
-                                data-testid="date-card"
-                            />
+                ))}
+            </Space>
 
-                        ))}
-                    </Layout>
-
-                    <Button onClick={handleNext}>
-                        {'>'}
-                    </Button>
-                </Space>
-            </Layout>
-
-        </>
+            <Button onClick={handleNext}>
+                {'>'}
+            </Button>
+        </Space>
 
     );
 };

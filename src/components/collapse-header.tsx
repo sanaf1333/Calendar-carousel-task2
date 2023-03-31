@@ -28,7 +28,6 @@ const CollapseHeader: React.FC<Props> = ({ selectedDate, handleCollapse }) => {
             {selectedDate}  {<DownOutlined style={{ color: token.colorPrimary }} />}
           </Text>
         </Col>
-
       </Row>
     </div>
   );
