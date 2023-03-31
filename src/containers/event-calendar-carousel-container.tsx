@@ -2,28 +2,36 @@ import { useState } from "react";
 import { Alert, Space } from "antd";
 import { defaultDisabledDates } from "@/data/disabled-dates";
 import { calculateMonth } from "@/helpers/calculate-month";
-import { APIProps } from "@/interfaces/API-props";
+import { eventCalendarCarouselAPIProps } from "@/types/event-calendar-carousel-API-props";
 import { defaultTimeOptions } from "@/data/time-options";
-import { defaultProps } from "@/interfaces/card-style-default-props";
+import { defaultProps } from "@/types/card-style-default-props";
 import EventCalendarCarousel from "@/components/event-calendar-carousel";
-const EventCalendarCarouselContainer: React.FC<APIProps> = ({ cardStyle, cardsInRow, disabledDates = defaultDisabledDates, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
+const EventCalendarCarouselContainer: React.FC<eventCalendarCarouselAPIProps> = ({ cardStyle, cardsInRow, disabledDates = defaultDisabledDates, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
     const mergedCardStyle = {
         ...defaultProps,
         ...cardStyle,
     };
     const [collapseActive, setCollapseActive] = useState(false);
-
-
     const [alertVisible, setAlertVisible] = useState(false);
-    const [startIndex, setStartIndex] = useState(0);//variable names
-    const [endIndex, setEndIndex] = useState(2);
+    const [startIndexCardsDisplayed, setStartIndexCardsDisplayed] = useState(0);
+    const [endIndexCardsDisplayed, setEndIndexCardsDisplayed] = useState(2);
     const [duration, setDuration] = useState(60);
     const [time, setTime] = useState(availableTimeSlots[0].value);
     const [addEventAlertDescription, setAddEeventAlertDescription] = useState("");
+    const [selectedDate, setSelectedDate] = useState<string>("Today");
+    const calendarDays = calculateMonth();
+    const [alertType, setAlertType] = useState<"success" | "info" | "warning" | "error" | undefined>(undefined)
+    const [eventAlertMessage, setEventAlertMessage] = useState("Event created successfully");
+    const [months, setMonths] = useState(calendarDays);
+    function updateMonths(months: []) {
+        setMonths(months);
+    }
+
     const handleCollapse = () => {
         setAlertVisible(false);
         setCollapseActive(!collapseActive);
     };
+
     const formatDuration = (duration: number): string => {
         const minutes = Math.floor(duration / 60);
         const seconds = duration % 60;
@@ -44,49 +52,48 @@ const EventCalendarCarouselContainer: React.FC<APIProps> = ({ cardStyle, cardsIn
         collapseActive && handleCollapse();
         setTime(e);
     }
-    function handleSetStartIndex(value: number) {
-        setStartIndex(value);
+
+    function handleSetStartIndexCardsDisplayed(value: number) {
+        setStartIndexCardsDisplayed(value);
     }
-    function handleSetEndIndex(value: number) {
-        setEndIndex(value);
+
+    function handleSetEndIndexCardsDisplayed(value: number) {
+        setEndIndexCardsDisplayed(value);
     }
-    let calendarDays = calculateMonth();//const
-    const [months, setMonths] = useState(calendarDays);
-    function updateMonths(months: []) {
-        setMonths(months);
-    }
-    const [selectedDate, setSelectedDate] = useState<string>("Today");
+
     function handleNavbarDateValue(value: string) {
         setAlertVisible(false);
         setSelectedDate(value);
     }
-    const [alertType, setAlertType] = useState<"success" | "info" | "warning" | "error" | undefined>(undefined)
+
     onClickAddEvent = (event: { time: string, formattedDuration: string, selectedDate: string }) => {
 
         let extractedDate = new Date(selectedDate);
         if (selectedDate == "Today") {
             extractedDate = new Date();
         }
-        let todaysDate = new Date();
+        const todaysDate = new Date();
         if (extractedDate >= todaysDate) {
-            setAddEeventAlertDescription(`for ${event.selectedDate} at ${event.time} for ${event.formattedDuration}`);
+            setAddEeventAlertDescription(`for ${event.selectedDate} at ${event.time} for ${event.formattedDuration} minutes(s) `);
+            setEventAlertMessage("Event created successfully");
             setAlertType("success")
             setAlertVisible(true);
             return event;
         }
         else {
             setAddEeventAlertDescription(`cannot create event on past date`);
+            setEventAlertMessage("Event creation failed");
             setAlertType("error");
             setAlertVisible(true);
         }
     }
 
-
     return (
         <div data-testid="calendar-carousel">
-            <Space direction="horizontal" style={{ display: "flex", justifyContent: "center", alignItems: "center" }} >
+            <EventCalendarCarousel selectedDate={selectedDate} cardStyle={mergedCardStyle} cardsInRow={cardsInRow} disabledDates={disabledDates} months={months} updateMonths={updateMonths} startIndexCardsDisplayed={startIndexCardsDisplayed} handleSetStartIndexCardsDisplayed={handleSetStartIndexCardsDisplayed} endIndexCardsDisplayed={endIndexCardsDisplayed} handleSetEndIndexCardsDisplayed={handleSetEndIndexCardsDisplayed} handleNavbarDateValue={handleNavbarDateValue} setTime={setTime} setDuration={setDuration} availableTimeSlots={availableTimeSlots} onClickAddEvent={onClickAddEvent} time={time} duration={duration} handleTimeChange={handleTimeChange} handleDurationChange={handleDurationChange} formatDuration={formatDuration} handleCollapse={handleCollapse} collapseActive={collapseActive} />
+            <Space align="center" style={{ display: "flex", justifyContent: "center", alignItems: "center" }} >
                 {alertVisible && <Alert
-                    message="Event created successfully"
+                    message={eventAlertMessage}
                     type={alertType}
                     description={addEventAlertDescription}
                     showIcon
@@ -95,7 +102,6 @@ const EventCalendarCarouselContainer: React.FC<APIProps> = ({ cardStyle, cardsIn
                     banner
                 />}
             </Space>
-            <EventCalendarCarousel selectedDate={selectedDate} cardStyle={mergedCardStyle} cardsInRow={cardsInRow} disabledDates={disabledDates} months={months} updateMonths={updateMonths} startIndex={startIndex} handleSetStartIndex={handleSetStartIndex} endIndex={endIndex} handleSetEndIndex={handleSetEndIndex} handleNavbarDateValue={handleNavbarDateValue} setTime={setTime} setDuration={setDuration} availableTimeSlots={availableTimeSlots} onClickAddEvent={onClickAddEvent} time={time} duration={duration} handleTimeChange={handleTimeChange} handleDurationChange={handleDurationChange} formatDuration={formatDuration} handleCollapse={handleCollapse} collapseActive={collapseActive} />
         </div>
     );
 };

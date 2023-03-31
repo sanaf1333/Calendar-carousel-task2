@@ -1,21 +1,22 @@
 import { useEffect } from 'react';
 import { calculateNextMonth } from '@/helpers/calculate-next';
 import { calculatePrevMonth } from '@/helpers/calculate-prev';
+import { monthsType } from '@/types/months-type';
 interface UseCarouselProps {
-  startIndex: number;
-  endIndex: number;
-  handleSetStartIndex: (value: number) => void;
-  handleSetEndIndex: (value: number) => void;
-  months: any[];
-  updateMonths: (updatedMonths: any[]) => void;
+  startIndexCardsDisplayed: number;
+  endIndexCardsDisplayed: number;
+  handleSetStartIndexCardsDisplayed: (value: number) => void;
+  handleSetEndIndexCardsDisplayed: (value: number) => void;
+  months: monthsType[];
+  updateMonths: (updatedMonths: monthsType[]) => void;
   cardsInRow?: number;
 }
 
 const useCarousel = ({
-  startIndex,
-  endIndex,
-  handleSetStartIndex,
-  handleSetEndIndex,
+  startIndexCardsDisplayed,
+  endIndexCardsDisplayed,
+  handleSetStartIndexCardsDisplayed,
+  handleSetEndIndexCardsDisplayed,
   months,
   updateMonths,
   cardsInRow = 3,
@@ -25,60 +26,60 @@ const useCarousel = ({
   const todayIndex = months.findIndex(card => card.date === today.getDate().toString());
   useEffect(() => {
     if (todayIndex >= 0) {
-      handleSetStartIndex(todayIndex);
-      handleSetEndIndex(todayIndex + cardsInRow - 1);
+      handleSetStartIndexCardsDisplayed(todayIndex);
+      handleSetEndIndexCardsDisplayed(todayIndex + cardsInRow - 1);
     }
   }, [todayIndex]);
 
   if(months.length - todayIndex < cardsInRow){
     console.log(todayIndex-months.length);
     const nextMonthDays = calculateNextMonth(
-      months[startIndex].month,
-      months[startIndex].year
+      months[startIndexCardsDisplayed].month,
+      months[startIndexCardsDisplayed].year
     );
     const newDays = [...months, ...nextMonthDays];
     updateMonths(newDays);
-    handleSetEndIndex(endIndex + (todayIndex-months.length));
+    handleSetEndIndexCardsDisplayed(endIndexCardsDisplayed + (todayIndex-months.length));
   }
   const handleNext = () => {
-    if (months.length - endIndex <= cardsInRow) {
+    if (months.length - endIndexCardsDisplayed <= cardsInRow) {
       const nextMonthDays = calculateNextMonth(
-        months[startIndex].month,
-        months[startIndex].year
+        months[startIndexCardsDisplayed].month,
+        months[startIndexCardsDisplayed].year
       );
       const newDays = [...months, ...nextMonthDays];
       updateMonths(newDays);
     }
 
-    if (endIndex < months.length - 1) {
-      if (endIndex - startIndex < cardsInRow - 1) {
-        handleSetStartIndex(startIndex + cardsInRow - 1);
-        handleSetEndIndex(endIndex + cardsInRow);
+    if (endIndexCardsDisplayed < months.length - 1) {
+      if (endIndexCardsDisplayed - startIndexCardsDisplayed < cardsInRow - 1) {
+        handleSetStartIndexCardsDisplayed(startIndexCardsDisplayed + cardsInRow - 1);
+        handleSetEndIndexCardsDisplayed(endIndexCardsDisplayed + cardsInRow);
       } else {
-        handleSetStartIndex(startIndex + cardsInRow);
-        handleSetEndIndex(endIndex + cardsInRow);
+        handleSetStartIndexCardsDisplayed(startIndexCardsDisplayed + cardsInRow);
+        handleSetEndIndexCardsDisplayed(endIndexCardsDisplayed + cardsInRow);
       }
     }
   };
 
   const handlePrev = () => {
-    let newStartIndex = startIndex;
-    let newEndIndex = endIndex;
-    if (startIndex <= cardsInRow) {
+    let newStartIndexCardsDisplayed = startIndexCardsDisplayed;
+    let newEndIndexCardsDisplayed = endIndexCardsDisplayed;
+    if (startIndexCardsDisplayed <= cardsInRow) {
       const prevMonthDays = calculatePrevMonth(
-        months[startIndex].month,
-        months[startIndex].year
+        months[startIndexCardsDisplayed].month,
+        months[startIndexCardsDisplayed].year
       );
       const newDays = [...prevMonthDays, ...months];
       updateMonths(newDays);
-      newStartIndex = startIndex + prevMonthDays.length - cardsInRow;
-      newEndIndex = endIndex + prevMonthDays.length - cardsInRow;
+      newStartIndexCardsDisplayed = startIndexCardsDisplayed + prevMonthDays.length - cardsInRow;
+      newEndIndexCardsDisplayed = endIndexCardsDisplayed + prevMonthDays.length - cardsInRow;
     } else {
-      newStartIndex = startIndex - cardsInRow;
-      newEndIndex = endIndex - cardsInRow;
+      newStartIndexCardsDisplayed = startIndexCardsDisplayed - cardsInRow;
+      newEndIndexCardsDisplayed = endIndexCardsDisplayed - cardsInRow;
     }
-    handleSetStartIndex(newStartIndex);
-    handleSetEndIndex(newEndIndex);
+    handleSetStartIndexCardsDisplayed(newStartIndexCardsDisplayed);
+    handleSetEndIndexCardsDisplayed(newEndIndexCardsDisplayed);
   };
 
   return {

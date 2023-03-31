@@ -1,27 +1,15 @@
-import React, { useState } from "react";
-import { Select, Space, Button, Typography, Col, Row, theme, Alert } from 'antd';
+import React from "react";
+import { Select, Space, Button, Typography, Col, Row, theme } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { defaultTimeOptions } from "@/data/time-options";
+import { eventCalendarProps } from "@/types/event-calendar-props";
 
 const { Text } = Typography;
 const { useToken } = theme;
 
-interface Props {
-    selectedDate: string;
-    availableTimeSlots?: { value: string; label: string; disabled?: boolean }[];
-    onClickAddEvent?: (event: { time: string, formattedDuration: string, selectedDate: string }) => void;
-    time: string;
-    duration: number;
-    handleTimeChange: (value: string) => void;
-    handleDurationChange: (value: number) => void;
-    formatDuration: (value: number) => string;
-    setTime: (value: string) => void;
-    setDuration: (value: number) => void;
-}
-
-const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent, time, duration, handleTimeChange, handleDurationChange, formatDuration, setTime, setDuration }) => {
+type AddEventProps = Omit<eventCalendarProps, "cardStyle" | "cardsInRow" | "disabledDates" | "months" | "updateMonths" | "startIndexCardsDisplayed" | "handleSetStartIndexCardsDisplayed" | "endIndexCardsDisplayed" | "handleSetEndIndexCardsDisplayed" | "handleNavbarDateValue" | "handleCollapse" | "collapseActive" | "onClickNavbarDate">;
+const AddEvent: React.FC<AddEventProps> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent, time, duration, handleTimeChange, handleDurationChange, formatDuration, setTime, setDuration }) => {
     const { token } = useToken();
-    
 
     const handleAddEvent = () => {
         const formattedDuration = formatDuration(duration);

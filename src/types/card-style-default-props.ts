@@ -1,6 +1,6 @@
-import { dateCardProps } from "./date-card-props-interface";
+import { dateCardStyleProps } from "./date-card-style-props";
 
-export const defaultProps: dateCardProps = {
+export const defaultProps: dateCardStyleProps = {
     headerColor: '#eb4c34',
     monthColor: 'white',
     dayColor: 'gray',
