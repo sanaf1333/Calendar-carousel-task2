@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Space, Layout } from 'antd';
+import React from 'react';
+import { Button, Space } from 'antd';
 import DateCard from './date-card';
 import useCarousel from '@/hooks/use-card-carousel';
 import { defaultTimeOptions } from '@/data/time-options';
