@@ -32,7 +32,6 @@ const useCarousel = ({
   }, [todayIndex]);
 
   if(months.length - todayIndex < cardsInRow){
-    console.log(todayIndex-months.length);
     const nextMonthDays = calculateNextMonth(
       months[startIndexCardsDisplayed].month,
       months[startIndexCardsDisplayed].year

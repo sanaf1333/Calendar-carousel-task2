@@ -69,7 +69,7 @@ const EventCalendarCarouselContainer: React.FC<eventCalendarCarouselAPIProps> = 
     onClickAddEvent = (event: { time: string, formattedDuration: string, selectedDate: string }) => {
 
         let extractedDate = new Date(selectedDate);
-        if (selectedDate == "Today") {
+        if (selectedDate === "Today") {
             extractedDate = new Date();
         }
         const todaysDate = new Date();

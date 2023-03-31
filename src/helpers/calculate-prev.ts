@@ -2,7 +2,6 @@ import { formatMonth } from "./format-date";
 
 export function calculatePrevMonth(month: string, year: number): { month: string; date: string; day: string; year: number }[] {
     const prevMonthDate: Date = new Date(`${year}-${month}-01`);
-
     prevMonthDate.setMonth(prevMonthDate.getMonth() - 1);
 
     if (prevMonthDate.getMonth() === 11) {
@@ -11,7 +10,6 @@ export function calculatePrevMonth(month: string, year: number): { month: string
     }
     const daysInMonth: number = new Date(prevMonthDate.getFullYear(), prevMonthDate.getMonth(), 0).getDate();
     const firstDayOfMonth: number = new Date(prevMonthDate.getFullYear(), prevMonthDate.getMonth(), 1).getDay();
-
     const calendarDays: { month: string; date: string; day: string; year: number }[] = [];
 
     for (let i = 1; i <= daysInMonth; i++) {
