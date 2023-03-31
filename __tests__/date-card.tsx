@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import DateCard from '../src/components/date-card';
-import { dateCardProps } from '../src/interfaces/date-card-props-interface';
+import { dateCardStyleProps } from '../src/types/date-card-style-props';
 import { defaultDisabledDates } from '../src/data/disabled-dates';
-export const defaultProps: dateCardProps = {
+export const defaultProps: dateCardStyleProps = {
   headerColor: '#eb4c34',
   monthColor: 'white',
   dayColor: 'gray',
@@ -51,7 +51,7 @@ describe('DateCard component', () => {
     expect(mockedProps.onClickNavbarDate).toHaveBeenCalledTimes(1);
   });
 
-  /* it('disable the card if it is a holiday', () => {
+     /*it('disable the card if it is a holiday', () => {
      const mockedHoliday = { date: '1', month: 'January', year: 2022, name: 'time travel' };
      const mockedDisabledDates = [mockedHoliday];
      render(<DateCard {...mockedProps} disabledDates={mockedDisabledDates} />);
@@ -59,7 +59,7 @@ describe('DateCard component', () => {
      fireEvent.click(dateCard);
      console.log(dateCard);
      expect(mockedProps.onClick).not.toHaveBeenCalled();
-     expect(mockedProps.onClickNavbarDate).not.toHaveBeenCalled();
+     expect(mockedProps.onClickNavbarDate).not.toHaveBeenCalled();//await async
    });*/
 
   it('should render Closed instead of day when isHoliday prop is true', () => {

@@ -7,6 +7,7 @@ import CollapseHeader from '../src/components/collapse-header';
 describe('CollapseHeader', () => {
   const mockedProps = {
     selectedDate: 'March 28, 2023',
+    handleCollapse: jest.fn(),
   };
 
   it('renders the component', () => {
@@ -24,7 +25,7 @@ describe('CollapseHeader', () => {
   it('displays "Today" when selected date is current date', () => {
     const today = new Date();
     const formattedToday = `${today.toLocaleString('default', { month: 'long' })} ${today.getDate()}, ${today.getFullYear()}`;
-    const { getByText } = render(<CollapseHeader selectedDate={formattedToday} />);
+    const { getByText } = render(<CollapseHeader {...mockedProps} selectedDate={formattedToday}  />);
     const todayText = getByText('Today');
     expect(todayText).toBeInTheDocument();
   });

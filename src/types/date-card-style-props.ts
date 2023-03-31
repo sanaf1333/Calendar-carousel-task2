@@ -1,4 +1,4 @@
-export interface dateCardProps {
+export interface dateCardStyleProps {
     headerColor?: string;
     monthColor?: string;
     dayColor?: string;

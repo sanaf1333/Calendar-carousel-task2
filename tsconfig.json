@@ -9,18 +9,32 @@
         "jsx": "react-jsx",
         "baseUrl": "./src",
         "paths": {
-        "@/*": ["*"],
-        "components/*": ["components/*"],
-        "pages/*": ["pages/*"],
-        "containers/*": ["containers/*"],
-        "data/*": ["data/*"],
-        "helpers/*": ["helpers/*"],
-        "hooks/*": ["hooks/*"]
+            "@/*": [
+                "*"
+            ],
+            "components/*": [
+                "components/*"
+            ],
+            "pages/*": [
+                "pages/*"
+            ],
+            "containers/*": [
+                "containers/*"
+            ],
+            "data/*": [
+                "data/*"
+            ],
+            "helpers/*": [
+                "helpers/*"
+            ],
+            "hooks/*": [
+                "hooks/*"
+            ]
         },
         "typeRoots": [
             "./node_modules/@types",
             "./src/types"
-          ]
+        ]
     },
     "types": [
         "react",
@@ -29,7 +43,7 @@
         "node",
         "jest",
         "@types/testing-library__jest-dom"
-      ],
+    ],
     "include": [
         "src",
         "./jest-setup.ts"

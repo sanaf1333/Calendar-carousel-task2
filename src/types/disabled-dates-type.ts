@@ -1,4 +1,4 @@
-export interface DisabledDates {
+export interface DisabledDatesType {
     name: string;
     date: string;
     month: string;

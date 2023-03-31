@@ -1,42 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { Select, Space, Button, Typography, Col, Row, theme } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { defaultTimeOptions } from "@/data/time-options";
+import { eventCalendarProps } from "@/types/event-calendar-props";
+
 const { Text } = Typography;
 const { useToken } = theme;
 
-interface Props {
-    selectedDate: string;
-    availableTimeSlots?: { value: string; label: string; disabled?: boolean }[];
-    onClickAddEvent?: (event: { time: string, formattedDuration: string, selectedDate: string }) => void;
-}
-
-const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent }) => {
-
-    const [duration, setDuration] = useState(0);
-    const [time, setTime] = useState(availableTimeSlots[0].value);
-    const formatDuration = (duration: number): string => {
-        const minutes = Math.floor(duration / 60);
-        const seconds = duration % 60;
-        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    };
+type AddEventProps = Omit<eventCalendarProps, "cardStyle" | "cardsInRow" | "disabledDates" | "months" | "updateMonths" | "startIndexCardsDisplayed" | "handleSetStartIndexCardsDisplayed" | "endIndexCardsDisplayed" | "handleSetEndIndexCardsDisplayed" | "handleNavbarDateValue" | "handleCollapse" | "collapseActive" | "onClickNavbarDate">;
+const AddEvent: React.FC<AddEventProps> = ({ selectedDate, availableTimeSlots = defaultTimeOptions, onClickAddEvent, time, duration, handleTimeChange, handleDurationChange, formatDuration, setTime, setDuration }) => {
     const { token } = useToken();
-    const handleDurationChange = (amount: number) => {
-        setDuration(prevDuration => {
-            const newDuration = prevDuration + amount * 60;
-            return Math.max(newDuration, 0);
-        });
-    };
-
-    const handleTimeChange = (e: string) => {
-        console.log(e);
-        setTime(e);
-    }
 
     const handleAddEvent = () => {
         const formattedDuration = formatDuration(duration);
         const event = { time, formattedDuration, selectedDate };
         onClickAddEvent && onClickAddEvent(event);
+        setTime(availableTimeSlots[0].value);
+        setDuration(60);
     }
     return (
         <Col style={{ backgroundColor: "white", height: "200px" }} data-testid="add-event-component" >
@@ -46,6 +26,7 @@ const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultT
                 </Col>
                 <Col span={4} style={{ textAlign: "end" }}>
                     <Select
+                        value={time}
                         data-testid="add-event"
                         defaultValue={availableTimeSlots[0].value}
                         style={{ width: 120 }}

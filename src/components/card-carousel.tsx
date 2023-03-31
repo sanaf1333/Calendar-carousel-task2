@@ -1,76 +1,58 @@
-import React, { useState } from 'react';
-import { Button, Space, Layout } from 'antd';
+import React from 'react';
+import { Button, Space } from 'antd';
 import DateCard from './date-card';
 import useCarousel from '@/hooks/use-card-carousel';
-import { DisabledDates } from '@/interfaces/disabled-dates-interface';
-import { dateCardProps } from "@/interfaces/date-card-props-interface";
-interface Props {
-    onClickNavbarDate: (value: string) => void;
-    disabledDates?: DisabledDates[];
-    months: any[];
-    updateMonths: (updatedMonths: any[]) => void;
-    selectedDate: string;
-    startIndex: number;
-    handleSetStartIndex: (value: number) => void;
-    endIndex: number;
-    handleSetEndIndex: (value: number) => void;
-    cardsInRow?: number;
-    cardStyle?: dateCardProps;
-}
+import { defaultTimeOptions } from '@/data/time-options';
+import { eventCalendarProps } from '@/types/event-calendar-props';
 
-const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, months, updateMonths, selectedDate, startIndex, handleSetStartIndex, endIndex, handleSetEndIndex, cardStyle, cardsInRow }) => {
-    const [selectedCard, setSelectedCard] = useState(-1);
+type cardCarouselProps = Omit<eventCalendarProps, "handleNavbarDateValue" | "onClickAddEevent" | "time" | "duration" | "handleTimeChange" | "handleDurationChange" | "formatDuration" | "collapseActive">;
 
-    const handleCardClick = (index: number) => {
-        setSelectedCard(index);
+const CardCarousel: React.FC<cardCarouselProps> = ({ onClickNavbarDate, disabledDates, months, updateMonths, selectedDate, startIndexCardsDisplayed, handleSetStartIndexCardsDisplayed, endIndexCardsDisplayed, handleSetEndIndexCardsDisplayed, cardStyle, cardsInRow, handleCollapse, setTime, setDuration, availableTimeSlots = defaultTimeOptions }) => {
+    const handleCardClick = () => {
+        setTime(availableTimeSlots[0].value);
+        setDuration(60);
+        handleCollapse();
     };
 
     const {
         handleNext,
         handlePrev,
     } = useCarousel({
-        startIndex,
-        endIndex,
-        handleSetStartIndex,
-        handleSetEndIndex,
+        startIndexCardsDisplayed,
+        endIndexCardsDisplayed,
+        handleSetStartIndexCardsDisplayed,
+        handleSetEndIndexCardsDisplayed,
         months,
         updateMonths,
         cardsInRow,
     });
+
     return (
-        <>
+        <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }} data-testid="card-carousel">
+            <Button onClick={handlePrev}>
+                {'<'}
+            </Button>
 
-            <Layout style={{ backgroundColor: "white", marginBottom: "20px" }} data-testid="card-carousel">
-                <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }}>
-                    <Button onClick={handlePrev}>
-                        {'<'}
-                    </Button>
+            <Space style={{ display: 'flex', justifyContent: 'center', flexDirection: "row", backgroundColor: "white" }}>
+                {months.slice(startIndexCardsDisplayed, endIndexCardsDisplayed + 1).map((calendarDays, index) => (
 
-                    <Layout style={{ display: 'flex', justifyContent: 'center', flexDirection: "row", backgroundColor: "white" }}>
-                        {months.slice(startIndex, endIndex + 1).map((calendarDays, index) => (
+                    <DateCard key={index} {...calendarDays}
+                        index={index}
+                        onClick={handleCardClick}
+                        onClickNavbarDate={onClickNavbarDate}
+                        disabledDates={disabledDates}
+                        selectedDate={selectedDate}
+                        cardStyle={cardStyle}
+                        data-testid="date-card"
+                    />
 
-                            <DateCard key={index} {...calendarDays}
-                                index={index}
-                                onClick={(index: number) => handleCardClick(index)}
-                                onClickNavbarDate={onClickNavbarDate}
-                                selected={selectedCard === index}
-                                disabledDates={disabledDates}
-                                selectedDate={selectedDate}
-                                cardStyle={cardStyle}
-                                data-testid="date-card"
-                            />
+                ))}
+            </Space>
 
-                        ))}
-                    </Layout>
-
-                    <Button onClick={handleNext}>
-                        {'>'}
-                    </Button>
-                </Space>
-            </Layout>
-
-        </>
-
+            <Button onClick={handleNext}>
+                {'>'}
+            </Button>
+        </Space>
     );
 };
 
