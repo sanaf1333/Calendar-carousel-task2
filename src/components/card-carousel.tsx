@@ -6,7 +6,7 @@ import { DisabledDates } from '@/interfaces/disabled-dates-interface';
 import { dateCardProps } from "@/interfaces/date-card-props-interface";
 import { defaultTimeOptions } from '@/data/time-options';
 interface Props {//typescript utlity type omit
-    onClickNavbarDate: (value: string) => void;
+    onClickNavbarDate: (month: string, date: string, year: number) => void;
     disabledDates?: DisabledDates[];
     months: any[];
     updateMonths: (updatedMonths: any[]) => void;
@@ -28,7 +28,7 @@ const CardCarousel: React.FC<Props> = ({ onClickNavbarDate, disabledDates, month
 
     const handleCardClick = (index: number) => {
         setTime(availableTimeSlots[0].value);
-        setDuration(0);
+        setDuration(60);
         handleCollapse();
         setSelectedCard(index);
     };

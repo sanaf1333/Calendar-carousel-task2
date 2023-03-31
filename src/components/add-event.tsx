@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Select, Space, Button, Typography, Col, Row, theme } from 'antd';
+import { Select, Space, Button, Typography, Col, Row, theme, Alert } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { defaultTimeOptions } from "@/data/time-options";
+
 const { Text } = Typography;
 const { useToken } = theme;
 
@@ -23,11 +24,11 @@ const AddEvent: React.FC<Props> = ({ selectedDate, availableTimeSlots = defaultT
     
 
     const handleAddEvent = () => {
-        setTime(availableTimeSlots[0].value);
-        setDuration(0);
         const formattedDuration = formatDuration(duration);
         const event = { time, formattedDuration, selectedDate };
         onClickAddEvent && onClickAddEvent(event);
+        setTime(availableTimeSlots[0].value);
+        setDuration(60);
     }
     return (
         <Col style={{ backgroundColor: "white", height: "200px" }} data-testid="add-event-component" >

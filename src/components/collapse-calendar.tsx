@@ -17,7 +17,7 @@ interface Props {//names //collapsedcalendarprops collapsedcalendartpes icollaps
     handleSetStartIndex: (value: number) => void;
     endIndex: number;
     handleSetEndIndex: (value: number) => void;
-    handleNavbarDateValue: (value: string) => void;
+    handleNavbarDateValue: (month: string, date: string, year: number) => void;
     availableTimeSlots?: { value: string, label: string, disabled?: boolean }[];
     setTime: (value: string) => void;
     setDuration: (value: number) => void;
