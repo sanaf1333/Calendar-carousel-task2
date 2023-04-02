@@ -47,8 +47,8 @@ Example array:
 
 ### Usage 
 helllooo1
-<AddEventCalendar disabledDates={disabledDates} />
-> <AddEventCalendar disabledDates={disabledDates} />
+<AddEventCalendar cardStyle={{headerColor: 'blue'}} />
+> <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
 hellooo2
 ## CalendarCarousel cardsInRow
 helloo3
