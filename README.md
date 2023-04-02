@@ -45,14 +45,17 @@ Example array:
 |   { date: "14", month: "August", year: 2023, name: "Independence" },              |
 |];                                                                                 |
 |                                                                                   |
-### Usage 
-> <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
+## Usage
+
+To use the `AddEventCalendar` component with a blue header color, use the following code:
+
+<AddEventCalendar cardStyle={{headerColor: 'blue'}} />
 
 ## CalendarCarousel cardsInRow
-hello
-### Usage
-> <AddEventCalendar cardsInRow={3} />
 
+To show 3 cards in a row, use the following code:
+
+<AddEventCalendar cardsInRow={3} />
 
 
 
