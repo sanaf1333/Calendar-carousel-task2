@@ -47,15 +47,15 @@ Example array:
 
 ### Usage 
 helllooo1
-<AddEventCalendar disabledDates={disabledDates} />
+> <AddEventCalendar disabledDates={disabledDates} />
 > <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
 hellooo2
 ## CalendarCarousel cardsInRow
 helloo3
-<AddEventCalendar cardsInRow={3} />
+> <AddEventCalendar cardsInRow={3} />
 ### Usage
 helloo4
-<AddEventCalendar cardsInRow={3} />
+> <AddEventCalendar cardsInRow={3} />
 > <AddEventCalendar cardsInRow=3 />
 helllooo5
 
