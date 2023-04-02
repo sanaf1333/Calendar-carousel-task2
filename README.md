@@ -57,6 +57,16 @@ To show 3 cards in a row, use the following code:
 
 <AddEventCalendar cardsInRow={3} />
 
+### Usage 
+> <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
+
+## CalendarCarousel cardsInRow
+
+### Usage
+> <AddEventCalendar cardsInRow={3} />
+
+
+
 
 
 
