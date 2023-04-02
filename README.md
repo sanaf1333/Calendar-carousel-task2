@@ -46,7 +46,7 @@ Example array:
 |];                                                                                 |
 
 ### Usage 
-> <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
+> <AddEventCalendar cardsInRow={3} />
 
 ## CalendarCarousel cardsInRow
 
