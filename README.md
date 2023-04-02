@@ -37,7 +37,7 @@
 Example array:
 | disabledDates default array                                                            |
 |-----------------------------------------------------------------------------------|
-|export const holiday: {date:string; month: string; year: number; name: string}[]=[ |
+|export const disabledDates: {date:string; month: string; year: number; name: string}[]=[ |
 |   { date: "1", month: "January", year: 2023, name: "New Year's Day" },            |
 |   { date: "14", month: "April", year: 2023, name: "Good Friday" },                |
 |   { date: "29", month: "march", year: 2023, name: "Mother's Day" },               |
@@ -47,15 +47,15 @@ Example array:
 
 ### Usage 
 helllooo1
-<AddEventCalendar cardStyle={{headerColor: 'blue'}} />
+<AddEventCalendar disabledDates={disabledDates} />
 > <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
 hellooo2
 ## CalendarCarousel cardsInRow
 helloo3
-<AddEventCalendar disabledDates={disabledDates} />
+<AddEventCalendar cardsInRow={3} />
 ### Usage
 helloo4
-<AddEventCalendar disabledDates={disabledDates} />
+<AddEventCalendar cardsInRow={3} />
 > <AddEventCalendar cardsInRow=3 />
 helllooo5
 
