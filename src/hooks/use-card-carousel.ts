@@ -40,6 +40,7 @@ const useCarousel = ({
     updateMonths(newDays);
     handleSetEndIndexCardsDisplayed(endIndexCardsDisplayed + (todayIndex-months.length));
   }
+  
   const handleNext = () => {
     if (months.length - endIndexCardsDisplayed <= cardsInRow) {
       const nextMonthDays = calculateNextMonth(
