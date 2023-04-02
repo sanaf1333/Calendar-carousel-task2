@@ -44,12 +44,12 @@ Example array:
 |   { date: "1", month: "May", year: 2023, name: "Labor Day" },                     |
 |   { date: "14", month: "August", year: 2023, name: "Independence" },              |
 |];                                                                                 |
-
+|                                                                                   |
 ### Usage 
 > <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
 
 ## CalendarCarousel cardsInRow
-
+hello
 ### Usage
 > <AddEventCalendar cardsInRow={3} />
 
