@@ -48,8 +48,9 @@ Example array:
 ## Usage
 
 To use the `AddEventCalendar` component with a blue header color, use the following code:
-
+<AddEventCalendar cardsInRow={3} />
 <AddEventCalendar cardStyle={{headerColor: 'blue'}} />
+> <AddEventCalendar cardsInRow={3} />
 
 ## CalendarCarousel cardsInRow
 
