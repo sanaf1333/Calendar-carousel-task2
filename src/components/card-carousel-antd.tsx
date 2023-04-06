@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Space } from 'antd';
+import { Button, Space, Carousel } from 'antd';
 import DateCard from './date-card';
 import useCarousel from '@/hooks/use-card-carousel';
 import { defaultTimeOptions } from '@/data/time-options';
@@ -26,28 +26,35 @@ const CardCarousel: React.FC<cardCarouselProps> = ({ onClickNavbarDate, disabled
         updateMonths,
         cardsInRow,
     });
-
+    const cards = months.slice(startIndexCardsDisplayed, endIndexCardsDisplayed + 1).map((calendarDays, index) => (
+        <DateCard key={index} {...calendarDays}
+          index={index}
+          onClick={handleCardClick}
+          onClickNavbarDate={onClickNavbarDate}
+          disabledDates={disabledDates}
+          selectedDate={selectedDate}
+          cardStyle={cardStyle}
+          data-testid="date-card"
+        />
+      ));
     return (
         <Space direction='horizontal' style={{ display: "flex", justifyContent: 'center', alignSelf: "center" }} data-testid="card-carousel">
             <Button onClick={handlePrev}>
                 {'<'}
             </Button>
-
-            <Space style={{ display: 'flex', justifyContent: 'center', flexDirection: "row", backgroundColor: "white" }}>
+            <Carousel dots={false} swipeToSlide={true} slidesToShow={3} effect='scrollx'>
                 {months.slice(startIndexCardsDisplayed, endIndexCardsDisplayed + 1).map((calendarDays, index) => (
-
                     <DateCard key={index} {...calendarDays}
-                        index={index}
-                        onClick={handleCardClick}
-                        onClickNavbarDate={onClickNavbarDate}
-                        disabledDates={disabledDates}
-                        selectedDate={selectedDate}
-                        cardStyle={cardStyle}
-                        data-testid="date-card"
-                    />
-
+                    index={index}
+                    onClick={handleCardClick}
+                    onClickNavbarDate={onClickNavbarDate}
+                    disabledDates={disabledDates}
+                    selectedDate={selectedDate}
+                    cardStyle={cardStyle}
+                    data-testid="date-card"
+                />
                 ))}
-            </Space>
+                </Carousel>
 
             <Button onClick={handleNext}>
                 {'>'}
@@ -55,5 +62,6 @@ const CardCarousel: React.FC<cardCarouselProps> = ({ onClickNavbarDate, disabled
         </Space>
     );
 };
+
 
 export default CardCarousel;

@@ -21,7 +21,6 @@ const today = new Date();
 const monthString: string = formatMonth(today);
 const DateCard: React.FC<dateCardProps> = ({ month, date, day, year, index, disabledDates, selectedDate, cardStyle, onClickNavbarDate, onClick }) => {
     let dateInput = formatDate(month, date, year);
-
     if (`${monthString} ${today.getDate()}, ${today.getFullYear()}` === dateInput) {
         dateInput = `Today`;
     }
@@ -29,7 +28,7 @@ const DateCard: React.FC<dateCardProps> = ({ month, date, day, year, index, disa
         selectedDate = `Today`;
     }
     const isHoliday = disabledDates?.some(h => h.date === date && h.month === month && h.year === year);
-
+    
     function handleCardClick(index: number) {
         if (!isHoliday) {
             onClickNavbarDate(`${month} ${date}, ${year}`);
